@@ -1,19 +1,19 @@
 import discord
+import sys
+from discord import File
 from discord.ext import commands
 from easy_pil import Editor, load_image_async, Font
 
-
-intents = discord.Intents.default()
-client = commands.Bot(command_prefix='/', intents=intents)
-key = "ODk1NjU4NTA2NjQ3MTM4MzY0.G8lWLD.PtDkPBEeMp7ShYaktul15CKpDsLh_c-dCPP3w8"
-bot = commands.Bot(command_prefix='/', intents=intents.all())
-
 intents = discord.Intents.default()
 intents.members = True
+intents.message_content = True
+
+key = sys.argv[1]
+bot = commands.Bot(command_prefix='/', intents=intents.all())
 
 block_words = ["lol", "cool", "http://", "https://"]
 
-@client.event
+@bot.event
 async def on_re():
     print(f"Bot logged in as {client.user}")
 
@@ -40,7 +40,7 @@ async def on_member_join(member):
     channel = bot.get_channel(1180536176139059327)
 
     Background = Editor("pic2.jpg")
-    profile_image = await load_image_async(str(member.avatar.url))
+    profile_image = await load_image_async(str(member.display_avatar.url))
 
     profile = Editor(profile_image).resize((150, 150)).circle_image()
     poppins = Font.poppins(size=50, variant='bold')
@@ -50,7 +50,7 @@ async def on_member_join(member):
     Background.paste(profile, (325, 90))
     Background.ellipse((325, 90), 150, 150, outline="white",stroke_width=5)
 
-    Background.text((400, 260), f"Willkommen auf {member.guil.name}", color="white", font=poppins, align="center")
+    Background.text((400, 260), f"Willkommen auf {member.guild.name}", color="white", font=poppins, align="center")
     Background.text((400, 325), f"{member.name}", color="white", font=poppins_small, align="center")
 
     file = File(fp=Background.image_bytes, filename="pic1.jpg")
