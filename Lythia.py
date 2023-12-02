@@ -43,9 +43,9 @@ async def on_member_join(member):
     profile_image = await load_image_async(str(member.display_avatar.url))
 
     profile = Editor(profile_image).resize((150, 150)).circle_image()
-    poppins = Font.poppins(size=50, variant='bold')
+    poppins = Font.poppins(size=46, variant='bold')
 
-    poppins_small = Font.poppins(size=20, variant="light")
+    poppins_small = Font.poppins(size=25, variant="light")
 
     Background.paste(profile, (325, 90))
     Background.ellipse((325, 90), 150, 150, outline="white",stroke_width=5)
@@ -54,7 +54,7 @@ async def on_member_join(member):
     Background.text((400, 325), f"{member.name}", color="white", font=poppins_small, align="center")
 
     file = File(fp=Background.image_bytes, filename="pic1.jpg")
-    await channel.send(f"Hello {member.mention}! Welcome To **{member.guild.name}** For more Info go to #rules")
+    await channel.send(f"Hello {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das #📚〣╠-regelwerk durch, damit keine Unannehmlichkeiten entstehen.")
     await channel.send(file=file)
 
     
