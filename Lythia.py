@@ -6,34 +6,22 @@ import datetime
 from discord import File
 from discord.ext import commands
 from easy_pil import Editor, load_image_async, Font
+from cogs.ping import Ping
+
 
 intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 
 key = sys.argv[1]
-bot = commands.Bot(command_prefix='/', intents=intents.all())
+bot = commands.Bot(command_prefix='/', intents=intents)
+
+asyncio.run(bot.add_cog(Ping()))
 
 block_words = ["lol", "cool", "http://", "https://"]
 
-#cogs
-cogs = ["cog.ping"]
-
-
-async def load():
-    for filename in os.listdir('./cogs'):
-        if filename.endswith('.py'):
-            await bot.load_extension(f'cogs.{filename[:-3]}')
-            print(f"{filename[:-3]} is loaded")
-
-
-async def main():
-    async with bot:
-        await load()
-        await bot.start(key)
-
 @bot.event
-async def on_re():
+async def on_ready():
     print(f"Bot logged in as {bot.user}")
 
 #@client.event
@@ -90,23 +78,6 @@ async def on_member_join(member):
     #send Bild
 
     await channel.send(f"Hello {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.")
-    #await channel.send(file=file)
-    await channel.send()
-
-    embed = discord.Embed(title=f"{member.mention}! Willkommen auf Lythia.de",
-    url="https://www.lythia.de/",
-    description="Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.",
-    colour=0x0099ff,
-    timestamp=datetime.now())
-    embed.set_author(name=":wave: Lythia.de",
-    url="Willkommen Auf Lythia.de",
-    icon_url=f"{file=file}")
-    embed.set_image(url="https://cubedhuang.com/images/alex-knight-unsplash.webp")
-    embed.set_footer(text="Vielspass")
-
-    await channel.send(embed=embed)     
-
-
-
-
-asyncio.run(main())
+    await channel.send(file=file)
+    
+bot.run(key)
