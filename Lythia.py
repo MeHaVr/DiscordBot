@@ -1,5 +1,7 @@
 import discord
 import sys
+import os
+import asyncio
 from discord import File
 from discord.ext import commands
 from easy_pil import Editor, load_image_async, Font
@@ -13,9 +15,23 @@ bot = commands.Bot(command_prefix='/', intents=intents.all())
 
 block_words = ["lol", "cool", "http://", "https://"]
 
+#cogs
+
+async def load():
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            await bot.load_extension(f'cogs.{filename[:-3]}')
+            print(f"{filename[:-3]} is loaded")
+
+
+async def main():
+    async with bot:
+        await load()
+        await bot.start(key)
+
 @bot.event
 async def on_re():
-    print(f"Bot logged in as {client.user}")
+    print(f"Bot logged in as {bot.user}")
 
 #@client.event
 #async def on_message(msg):
@@ -63,10 +79,11 @@ async def on_member_join(member):
     await member.add_roles(role)
     
     #send Bild
-    
+
     await channel.send(f"Hello {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das #📚〣╠-regelwerk durch, damit keine Unannehmlichkeiten entstehen.")
     await channel.send(file=file)
 
+
     
 
-bot.run(key)
+asyncio.run(main())
