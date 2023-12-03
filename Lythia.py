@@ -16,6 +16,8 @@ bot = commands.Bot(command_prefix='/', intents=intents.all())
 block_words = ["lol", "cool", "http://", "https://"]
 
 #cogs
+cogs = ["cog.ping"]
+
 
 async def load():
     for filename in os.listdir('./cogs'):
@@ -82,8 +84,5 @@ async def on_member_join(member):
 
     await channel.send(f"Hello {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das #📚〣╠-regelwerk durch, damit keine Unannehmlichkeiten entstehen.")
     await channel.send(file=file)
-
-
-    
 
 asyncio.run(main())
