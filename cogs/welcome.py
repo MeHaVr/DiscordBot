@@ -23,7 +23,9 @@ class Welcome(commands.Cog):
     @bot.event
     async def on_member_join(member):
 
+        guild = bot.get_guild(1180536174633304184)
         channel = bot.get_channel(1180536176139059327)
+        Membercount = bot.get_channel(int(1180536176139059322))
 
         #bild Generieren 
 
@@ -42,7 +44,6 @@ class Welcome(commands.Cog):
         Background.text((400, 325), f"{member.name}", color="white", font=poppins_small, align="center")
 
         file = File(fp=Background.image_bytes, filename="pic1.jpg")
-        #filedm = File(fp=Background.image_bytes, filename="pic1.jpg")
 
         #Auto Rolle
 
@@ -58,3 +59,7 @@ class Welcome(commands.Cog):
 
         await channel.send(f"Hello {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.")
         await channel.send(file=file)
+
+        #Edit channel
+
+        await channel.Membercount.edit(name = f'🚶〣╠- Spieler • {guild.member_count}')

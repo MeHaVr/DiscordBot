@@ -17,5 +17,9 @@ class Ping(commands.Cog):
         print("Hello")
         await ctx.send("pong")
 
+    @commands.command(name='membercount')
+    async def membercount(self, ctx):
+        await ctx.send(ctx.guild.member_count)
+
 
     
