@@ -27,7 +27,7 @@ class Welcome(commands.Cog):
 
         #bild Generieren 
 
-        Background = Editor("pic2.jpg")
+        Background = Editor("cogs/img/welcome.jpg")
         profile_image = await load_image_async(str(member.display_avatar.url))
 
         profile = Editor(profile_image).resize((150, 150)).circle_image()
@@ -51,8 +51,8 @@ class Welcome(commands.Cog):
 
         #send Dm mit bild
         
-        await member.send(f"Hello {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.")
-        await member.send("https://media.discordapp.net/attachments/967794543653187704/1169004841478140024/Picsart_23-10-31_17-49-29-418.png?format=webp&quality=lossless&width=1192&height=671")    
+        #await member.send(f"Hello {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.")
+        #await member.send("https://media.discordapp.net/attachments/967794543653187704/1169004841478140024/Picsart_23-10-31_17-49-29-418.png?format=webp&quality=lossless&width=1192&height=671")    
 
         #send Bild
 
