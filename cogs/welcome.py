@@ -25,7 +25,7 @@ class Welcome(commands.Cog):
 
         guild = bot.get_guild(1180536174633304184)
         channel = bot.get_channel(1180536176139059327)
-        Membercount = bot.get_channel(int(1180536176139059322))
+        guildmember = bot.get_channel(int(1180536176139059322))
 
         #bild Generieren 
 
@@ -52,14 +52,15 @@ class Welcome(commands.Cog):
 
         #send Dm mit bild
         
-        #await member.send(f"Hello {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.")
-        #await member.send("https://media.discordapp.net/attachments/967794543653187704/1169004841478140024/Picsart_23-10-31_17-49-29-418.png?format=webp&quality=lossless&width=1192&height=671")    
+        await member.send(f"Hallo {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.")
+        await member.send("https://media.discordapp.net/attachments/967794543653187704/1169004841478140024/Picsart_23-10-31_17-49-29-418.png?format=webp&quality=lossless&width=1192&height=671")    
 
         #send Bild
 
-        await channel.send(f"Hello {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.")
+        await channel.send(f"Hallo {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.")
         await channel.send(file=file)
 
         #Edit channel
 
-        await channel.Membercount.edit(name = f'🚶〣╠- Spieler • {guild.member_count}')
+        await guildmember.edit(name = f'🚶〣╠- Spieler • {guild.member_count}')
+        await channel.edit(topic = f"Hallo {member.mention}! Willkommen auf **{member.guild.name}**")
