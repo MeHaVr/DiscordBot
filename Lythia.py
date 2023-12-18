@@ -9,11 +9,13 @@ from easy_pil import Editor, load_image_async, Font
 from cogs.setup import bot
 from cogs.ping import Ping
 from cogs.welcome import Welcome 
+from cogs.achievements import Achievements
 
 key = sys.argv[1]
 
 asyncio.run(bot.add_cog(Welcome()))
 asyncio.run(bot.add_cog(Ping()))
+asyncio.run(bot.add_cog(Achievements()))
 
 block_words = ["lol", "cool", "http://", "https://"]
 

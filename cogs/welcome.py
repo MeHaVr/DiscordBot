@@ -60,8 +60,8 @@ class Welcome(commands.Cog):
 
         #send Bild
 
-        await channel.send(f"Hallo {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.")
-        await channel.send(file=file)
+        await channel.send(f"Hallo {member.mention}! Willkommen auf **{member.guild.name}** Lies dir bitte das https://discord.com/channels/876068862754447391/896501000490332211 durch, damit keine Unannehmlichkeiten entstehen.", file=file)
+
 
         #Edit channel
 

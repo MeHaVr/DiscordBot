@@ -1,2 +1,4 @@
 discord
 easy_pil
+mariadb
+icecream
