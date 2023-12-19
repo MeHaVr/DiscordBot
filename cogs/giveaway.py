@@ -5,11 +5,17 @@ import os
 import asyncio
 
 
-class voicechannel(commands.Cog): 
+class giveaway(commands.Cog): 
 
     @commands.Cog.listener()
     async def on_ready(self):
         print("ping.py says hello")
+
+
+
+
+
+
 
 
     

@@ -10,14 +10,14 @@ from cogs.setup import bot
 from cogs.ping import Ping
 from cogs.welcome import Welcome 
 from cogs.achievements import Achievements
-from cogs.voicechannel import voicechannel
+from cogs.giveaway import giveaway
 
 key = sys.argv[1]
 
 asyncio.run(bot.add_cog(Welcome()))
 asyncio.run(bot.add_cog(Ping()))
 asyncio.run(bot.add_cog(Achievements()))
-asyncio.run(bot.add_cog(voicechannel()))
+asyncio.run(bot.add_cog(giveaway()))
 
 block_words = ["lol", "cool", "http://", "https://"]
 

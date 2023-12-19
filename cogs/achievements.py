@@ -124,7 +124,6 @@ class Achievements(commands.Cog):
                      
 
                 
-
                 
         
         
