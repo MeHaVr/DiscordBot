@@ -42,11 +42,11 @@ class Achievements(commands.Cog):
                 self.cur.execute("""CREATE TABLE `discord`.`achievements` (
                             `id` int AUTO_INCREMENT, PRIMARY KEY (id),
                             `user_id` varchar(128),
-                            `messages_count` int default 0,
-                            `reaction_count` int default 0,
-                            `images_count` int default 0,
-                            `voice_channel_time` int default 0,
-                            `event_count` int default 0                    
+                            `messages_count` int,
+                            `reaction_count` int,
+                            `images_count` int,
+                            `voice_channel_time` int,
+                            `event_count` int                   
                             );""")
                 print("table achievements got created.")
 
@@ -100,22 +100,25 @@ class Achievements(commands.Cog):
         ic(user)
         if user == None:
             print("new user")
-            self.cur.execute(f"insert into achievements (user_id, messages_count) values ('{user.id}', 1);") 
+            self.cur.execute(f"insert into achievements (user_id, reaction_count) values ('{user.id}', 1);") 
             self.conn.commit()
         else:
             print("updating message user")
-            self.cur.execute(f"update achievements set messages_count = {user[3]+1}")
+            self.cur.execute(f"update achievements set reaction_count = {user[3]+1}")
             self.conn.commit()
 
+            #Error papa
             if user[3]+1 == 10:
-                file = File(fp="cogs/img/Achievements/10nachrichten.png")
-                await channel.send(f"Herzliche Glückwunsch {user.mention} Sie haben {user[3]+1} Reagierte geschickt!", file=file)
+                file = File(fp="cogs/img/Achievements/10Reaktion.png")
+                await channel.send(f"Herzliche Glückwunsch {user.name} Sie haben 10 Reagierte geschickt!", file=file)
             if user[3]+1 == 100:
-                file = File(fp="cogs/img/Achievements/100nachrichten.png")
-                await channel.send(f"Herzliche Glückwunsch {user.mention} Sie haben {user[3]+1} Reagierte geschickt!", file=file)
+                file = File(fp="cogs/img/Achievements/100Reaktion.png")
+                await channel.send(f"Herzliche Glückwunsch {user.name} Sie haben 100 Reagierte geschickt!", file=file)
             if user[3]+1 == 1000:
-                file = File(fp="cogs/img/Achievements/1000nachrichten.png")
-                await channel.send(f"Herzliche Glückwunsch {user.mention} Sie haben {user[3]+1} Reagierte geschickt!", file=file)
+                file = File(fp="cogs/img/Achievements/1000Reaktion.png")
+                await channel.send(f"Herzliche Glückwunsch {user.name} Sie haben 1000 Reagierte geschickt!", file=file)
+
+    
 
 
                      
