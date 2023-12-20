@@ -76,3 +76,5 @@ class Welcome(commands.Cog):
         guildmember = bot.get_channel(int(1180536176139059322))
     
         await guildmember.edit(name = f'🚶〣╠- Spieler • {guild.member_count}')
+
+
