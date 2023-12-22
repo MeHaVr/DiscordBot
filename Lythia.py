@@ -6,7 +6,7 @@ import datetime
 from discord import File
 from easy_pil import Editor, load_image_async, Font
 
-from cogs.setup import bot
+from cogs.setup import bot, info    
 from cogs.ping import Ping
 from cogs.welcome import Welcome 
 from cogs.achievements import Achievements
@@ -14,16 +14,21 @@ from cogs.voicechannel import voicechannel
 
 key = sys.argv[1]
 
+
+ping_bot = Ping()
+#print('Ping instantiated')
+
 asyncio.run(bot.add_cog(Welcome()))
-asyncio.run(bot.add_cog(Ping()))
+asyncio.run(bot.add_cog(ping_bot))
+#print("add_cog started")
+#(f"Lythia.py: get_commands: {bot.tree.get_commands()}")
+
 asyncio.run(bot.add_cog(Achievements()))
 asyncio.run(bot.add_cog(voicechannel()))
 
-block_words = ["lol", "cool", "http://", "https://"]
-
 @bot.event
 async def on_ready():
-    print(f"Bot logged in as {bot.user}")
+    info(f"Bot logged in as {bot.user}")
 
 #@client.event
 #async def on_message(msg):

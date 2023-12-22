@@ -6,7 +6,7 @@ import os
 import asyncio
 import mariadb
 import sys
-from cogs.setup import bot
+from cogs.setup import bot, info, error
 from icecream import ic 
 from easy_pil import Editor, load_image_async, Font
 
@@ -15,7 +15,7 @@ class Achievements(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("looking for database")
+        info("looking for database")
 
         # Connect to MariaDB Platform
         try:
@@ -27,14 +27,14 @@ class Achievements(commands.Cog):
                 database="discord"
             )
 
-            print("DB connection established!")
+            info("DB connection established!")
 
             self.cur = self.conn.cursor()
 
             self.cur.execute("SHOW TABLES;")
             for table_name in self.cur:
                 if table_name[0] == 'achievements':
-                    print('achievements found')
+                    info('achievements found')
                     return
 
             # create table
@@ -48,14 +48,14 @@ class Achievements(commands.Cog):
                             `voice_channel_time` int,
                             `event_count` int                   
                             );""")
-                print("table achievements got created.")
+                info("table achievements got created.")
 
             except mariadb.Error as e:
-                print("Could not create the table 'achievements'")
+                error("Could not create the table 'achievements'")
                 sys.exit(1)
 
         except mariadb.Error as e:
-            print(f"Error connecting to MariaDB Platform: {e}")
+            error(f"Error connecting to MariaDB Platform: {e}")
             sys.exit(1)
 
     @commands.Cog.listener()
@@ -69,11 +69,11 @@ class Achievements(commands.Cog):
         user = self.cur.fetchone()
         ic(user)
         if user == None:
-            print("new user")
+            info("new user")
             self.cur.execute(f"insert into achievements (user_id, messages_count) values ('{message.author.id}', 1);") 
             self.conn.commit()
         else:
-            print("updating message user")
+            info("updating message user")
             self.cur.execute(f"update achievements set messages_count = {user[2]+1}")
             self.conn.commit()
 
@@ -99,11 +99,11 @@ class Achievements(commands.Cog):
         user = self.cur.fetchone()
         ic(user)
         if user == None:
-            print("new user")
+            info("new user")
             self.cur.execute(f"insert into achievements (user_id, reaction_count) values ('{user.id}', 1);") 
             self.conn.commit()
         else:
-            print("updating message user")
+            info("updating message user")
             self.cur.execute(f"update achievements set reaction_count = {user[3]+1}")
             self.conn.commit()
 

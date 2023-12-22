@@ -19,9 +19,9 @@ from cogs.setup import bot
 
 class Welcome(commands.Cog): 
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print("welcome.py says hi")
+    #@commands.Cog.listener()
+    #async def on_ready(self):
+    #   # print("welcome.py says hi")
 
     @bot.event
     async def on_member_join(member):
