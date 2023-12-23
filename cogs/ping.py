@@ -1,10 +1,8 @@
 import discord
 from discord.ext import commands
-from discord import app_commands
-import os
-import asyncio
-from cogs.setup import bot,tree, server_guild, info
-import time
+from discord.commands import slash_command
+from cogs.setup import bot,server_guild, info, properties, save_properties
+from discord.commands import Option
 
 class Ping(commands.Cog): 
 
@@ -15,35 +13,52 @@ class Ping(commands.Cog):
     #     await tree.sync(guild=discord.Object(id=1180536174633304184))
     #     print("tree is synced")
 
-    @commands.command(name="sync", description="sync commands")
-    async def sync(self, ctx):
-        """sync the commands"""
-        await tree.sync(guild=discord.Object(id=server_guild))
-        await ctx.send("OK")
+    # @commands.command(name="sync", description="sync commands")
+    # async def sync(self, ctx):
+    #     """sync the commands"""
+    #     await tree.sync(guild=discord.Object(id=server_guild))
+    #     await ctx.send("OK")
 
-    @app_commands.command(name="ping", description="PING BONG")
-    @app_commands.guilds(discord.Object(id=server_guild))
-    async def ping(self, interaction: discord.Interaction):
+    @slash_command(description="PING PONG")
+    async def ping(self, ctx: discord.ApplicationContext):
         """bla bla bla"""
-        print("Hello")
-        await interaction.response.send_message("pong")
+        info("Hello")
+        await ctx.respond("pong")
+ 
+    @slash_command(description="PING PONG 2")
+    async def ping2(self, ctx: discord.ApplicationContext):
+        """bla bla bla"""
+        info("Hello")
+        await ctx.respond("pong2")
 
 
-    @app_commands.command(name="membercount", description="Es zeigt wie viele usere auf dem Server sind.")
-    @app_commands.guilds(discord.Object(id=server_guild))
-    async def membercount(self, interaction: discord.Interaction):
+    @slash_command(description="Es zeigt wie viele usere auf dem Server sind.")
+    async def membercount(self, ctx: discord.ApplicationContext):
 
-        if interaction.guild.member_count == 2: 
-            await interaction.response.send_message(f"Es ist gerade ein spieler auf dem server sehr warscheintlich du :slight_smile:")
+        if ctx.guild.member_count == 2: 
+            await ctx.respond(f"Es ist gerade ein spieler auf dem server sehr warscheintlich du :slight_smile:")
         else:
-            await interaction.response.send_message(f"Es sind gerade auf {interaction.guild.member_count} Spieler dem Server")
+            await ctx.respond(f"Es sind gerade auf {ctx.guild.member_count} Spieler dem Server")
 
-    @app_commands.command(name="test", description="test")
-    @app_commands.guilds(discord.Object(id=server_guild))
-    async def test(self, interaction: discord.Interaction):
-       # print(f"\033[1;30m{time.strftime('%Y-%m-%d %H:%M:%S')}\033[0m TEST! app_command is working :)")
+    @slash_command(description="test")
+    async def test(self, ctx: discord.ApplicationContext):
         info("TEST! app_command is working :)")
-        await interaction.response.send_message('The test is done and its working :slight_smile:!')
+
+        properties['foo'] = 'XMAS!!'
+        save_properties()
+        #await ctx.response.send_message('The test is done and its working :slight_smile:!')
+        await ctx.response.send_message(f'property foo: {properties["foo"]}')
+
+
+    @slash_command(description="Einen User grüssen")
+    async def grüssen(self, ctx: discord.ApplicationContext, user: Option(discord.Member, "Der User, den du grüssen mochtest")):
+        await ctx.respond(f"Liebe Grüsse {user.mention} von {ctx.author.mention}")
+
+        
+
+
+
+        
 
 
 
