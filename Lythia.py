@@ -3,27 +3,28 @@ import sys
 import os
 import asyncio
 import datetime
-from discord import File
 from easy_pil import Editor, load_image_async, Font
 
-from cogs.setup import bot
+from cogs.setup import bot, info
 from cogs.ping import Ping
-from cogs.welcome import Welcome 
-from cogs.achievements import Achievements
-from cogs.giveaway import giveaway
+from cogs.welcome import Welcome
+from cogs.punishsystem import Punishsystem
+# from cogs.achievements import Achievements
+# from cogs.voicechannel import voicechannel
 
 key = sys.argv[1]
 
-asyncio.run(bot.add_cog(Welcome()))
-asyncio.run(bot.add_cog(Ping()))
-asyncio.run(bot.add_cog(Achievements()))
-asyncio.run(bot.add_cog(giveaway()))
-
-block_words = ["lol", "cool", "http://", "https://"]
+# asyncio.run(bot.add_cog(Welcome()))
+#asyncio.run(bot.add_cog(Ping()))
+bot.add_cog(Ping())
+bot.add_cog(Welcome())
+bot.add_cog(Punishsystem())
+# asyncio.run(bot.add_cog(Achievements()))
+# asyncio.run(bot.add_cog(voicechannel()))
 
 @bot.event
 async def on_ready():
-    print(f"Bot logged in as {bot.user}")
+    info(f"Bot logged in as {bot.user}")
 
 #@client.event
 #async def on_message(msg):

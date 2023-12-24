@@ -1,4 +1,6 @@
-discord
+py-cord
+ezcord
 easy_pil
 mariadb
 icecream
+pyyaml
