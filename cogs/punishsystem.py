@@ -42,6 +42,15 @@ class Punishsystem(commands.Cog):
             
             await ctx.respond("Der kick war erfolgreich")
 
+            embed = discord.Embed(title="Sie wurden gekickt",
+            description=f"**GRUND:** {grund}\n**UHRZEIT:** {uhr}\n**VON:** {ctx.name}")
+            embed.set_author(name=f"{ctx.guild.name}",
+            icon_url=f"{ctx.guild}") 
+
+            await user.send(embed=embed)
+            await user.send()
+            #kick(user, reason=grund)
+
         else:
             await ctx.respond("Du darfst nicht Teammitglieder kicken")
         
