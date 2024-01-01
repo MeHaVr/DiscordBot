@@ -3,6 +3,8 @@ from discord.ext import commands
 from discord.commands import slash_command
 from cogs.setup import bot,server_guild, info, properties, save_properties
 from discord.commands import Option
+from datetime import timedelta
+from datetime import datetime
 
 class Ping(commands.Cog): 
 
@@ -54,7 +56,23 @@ class Ping(commands.Cog):
     async def grüssen(self, ctx: discord.ApplicationContext, user: Option(discord.Member, "Der User, den du grüssen mochtest")):
         await ctx.respond(f"Liebe Grüsse {user.mention} von {ctx.author.mention}")
 
+    @slash_command(description="Es zeigt was mehavr drannen ist und was noch hinzugefügt wurde")
+    async def trello(self, ctx: discord.ApplicationContext):
+
+        embed = discord.Embed(title="Lythia.de | discord Bot",
+                      description="Drucken Sie einfach auf dem Knopf.",
+                      timestamp=datetime.now())
+
+        embed.set_image(url="https://www.tab-tv.com/wp-content/uploads/2022/07/How-to-change-the-background-in-Trello.webp")
+        embed.set_footer(text="Lythia.de")  
+
+        button = discord.ui.Button(label="Trello", url="https://trello.com/b/YF7NAndd/project-management")
+        view = discord.ui.View()
+        view.add_item(button)
+
+        await ctx.respond(embed=embed, ephemeral=True, view=view)
         
+
 
 
 

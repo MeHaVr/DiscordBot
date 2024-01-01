@@ -19,9 +19,19 @@ def error (string):
 info("bot setup")
 
 properties = {
-    'test': 120,
-    'foo': 'bar',
-    'willkommensnachrichten': True
+    'willkommensnachrichten': True,
+    'punishsystem-logchat': 1180536179754541150,
+    'server-guild-id': 1180536174633304184,
+    'welcome-channel': 1180536176139059327,
+    'Entbannung-channel': 1180536176663339040,
+    'banned-users': [], 
+    'ticket_channel_id': 1180536180958314609,
+    'log_channel_id': 1180536181725864022, 
+    'ticket_kategory_1': 1180536181725864021,
+    'ticket_kategory_2': 1180536181725864019,
+    'team_role_id_1': 1180536174880768025,
+    'team_role_id_2': 1180536174880768025
+     
 }
 
 def save_properties():
@@ -32,7 +42,6 @@ try:
     with open('properties.yml', 'r') as file:
         properties = yaml.safe_load(file)
         ic(properties)
-        print(properties['foo'])
 except FileNotFoundError:
     info('no properties, creating new file')
     save_properties()
