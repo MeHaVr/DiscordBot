@@ -9,6 +9,7 @@ from cogs.setup import bot, info
 from cogs.ping import Ping
 from cogs.welcome import Welcome
 from cogs.punishsystem import Punishsystem
+from webserver.webserver import webserver_main 
 # from cogs.achievements import Achievements
 # from cogs.voicechannel import voicechannel
 
@@ -43,6 +44,8 @@ async def on_ready():
     #await channel.send(f'{member.mention} hi')
     #print("done")
 
+web_task = asyncio.ensure_future(webserver_main())
+bot_task = asyncio.ensure_future(bot.run(key))
 
-    
-bot.run(key)
+loop = asyncio.get_event_loop()
+loop.run_forever()

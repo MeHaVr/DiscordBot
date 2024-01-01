@@ -1,6 +1,9 @@
 py-cord
 ezcord
 easy_pil
-mariadb
+#mariadb
 icecream
 pyyaml
+tornado
+jinja2
+chat_exporter

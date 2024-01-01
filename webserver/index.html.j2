@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="resources/unban.css" />
+  </head>
+  <body>
+    <div id="ellipse-1"></div>
+    <div id="ellipse-2"></div>
+
+    <header>
+        <div id="lythia-logo">Lythia.de</div>
+        <nav class="nav-wide-display">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Bewerben</a></li>
+                <li><a href="">Regelwerk</a></li>
+                <li><a href="">Spenden</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-narrow-display">
+            <img src="resources/burger.svg">
+        </nav>
+        <a class="nav-wide-display"><img  src="resources/icons8-discord-1.svg"></a>
+    </header>
+    <main>
+        <div class="columns">
+            <div class="col-left">
+                <h1>Entbannung</h1>
+                <p>Hallo {{ user_name }}, hier können Sie sich entbannen lassen.</p>
+            </div>
+            <img class="col-right" src="resources/skinrendernogmreen-1.png" />
+        </div>
+        <div class="warning">
+            <img src="resources/3643776-caution-exclamation-mark-round-sign-113410-1.svg" />
+            <p>Sie können sich nur einmal entbannen lassen!</p>
+            <img src="resources/3643776-caution-exclamation-mark-round-sign-113410-1.svg" />
+        </div>
+        <p id="vorlage">Brauchen Sie eine Vorlage, <button id="button-vorlage"><a href="#vorlage">klicken Sie hier</a></button></p>
+        <form action="/" method="post">
+            <textarea name="grund"></textarea>
+            <input type="submit" value="Abschicken"/>
+            <input type="hidden" name="user_id" value="{{ user_id }}">
+        </form>
+
+        <a name="vorlage"></a>
+        <p class="vorlage-text">
+            Entbannungsantrag für [Dein Minecraft-Nickname]
+        </p>
+
+        <p class="vorlage-text">
+            Sehr geehrtes Serverteam von Lythia.de,<br><br>
+            ich wurde am [Datum] wegen [Grund des Bans] gebannt. Nach reiflicher Überlegung erkenne ich mein Fehlverhalten an und möchte mich aufrichtig entschuldigen.
+            Grund für meinen Ban: [Hier den Grund angeben]<br><br>
+            Meine Einsicht und Entschuldigung: [Deine Einsicht und Entschuldigung]<br>
+            Maßnahmen, um ähnliche Vorfälle zu vermeiden: [Deine geplanten Maßnahmen]<br>
+            Ich hoffe aufrichtig, dass ihr meinen Entbannungsantrag in Betracht zieht und mir eine zweite Chance gebt. Ich versichere, dass sich solche Vorfälle nicht wiederholen werden.
+            Vielen Dank für eure Zeit und Überlegung.
+        </p>
+        <p class="vorlage-text">
+            Mit freundlichen Grüßen,
+            [Dein Minecraft-Nickname]
+        </p>
+    </main>
+    <footer>
+        <span class="text-wrapper-6">© 2023 Lythia.de. All rights reserved. </span>
+        <a href="https://lythia.de/impressum.html" target="_blank" rel="noopener noreferrer">
+            <span class="text-wrapper-7">Impressum</span>
+        </a>
+    </footer>
+  </body>
+</html>
