@@ -8,6 +8,12 @@
   
     ```
 
+- ### To start the program
+  Run the command in the cmd/terminal
+   ```
+   lythia.py [Bot Token] 
+   ```
+
 - ### All Groupe Commands
   - `/ticket`
   - `/delete`
