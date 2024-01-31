@@ -68,7 +68,7 @@ class MyView(discord.ui.View):
             ),
             discord.SelectOption(
                 label="Bewerbungen",  #Name of the 2 Select Menu Option
-                description="Wenn du Teil des Teams werden wilst.   ", #Description of the 2 Select Menu Option
+                description="Wenn du Teil des Teams werden wilst.", #Description of the 2 Select Menu Option
                 emoji="<:Team:1191046878020763748>",        #Emoji of the 2 Option  if you want a Custom Emoji read this  https://github.com/Simoneeeeeeee/Discord-Select-Menu-Ticket-Bot/tree/main#how-to-use-custom-emojis-from-your-discors-server-in-the-select-menu
                 value="support2"   #Don't change this value otherwise the code will not work anymore!!!!
             )
@@ -88,7 +88,7 @@ class MyView(discord.ui.View):
                     cur.execute("SELECT id FROM ticket WHERE discord_id=?", (member_id,)) #Get the Ticket Number from the Database
                     ticket_number = cur.fetchone()
                     category = self.bot.get_channel(CATEGORY_ID1)
-                    ticket_channel = await guild.create_text_channel(f"ticket-{ticket_number}", category=category,
+                    ticket_channel = await guild.create_text_channel(f"ticket-{interaction.user.name}", category=category,
                                                                     topic=f"{interaction.user.id}")
 
                     await ticket_channel.set_permissions(guild.get_role(TEAM_ROLE1), send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the Staff Team
@@ -128,7 +128,7 @@ class MyView(discord.ui.View):
                     cur.execute("SELECT id FROM ticket WHERE discord_id=?", (member_id,)) #Get the Ticket Number from the Database
                     ticket_number = cur.fetchone()
                     category = self.bot.get_channel(CATEGORY_ID2)
-                    ticket_channel = await guild.create_text_channel(f"Ticket-{ticket_number}", category=category,
+                    ticket_channel = await guild.create_text_channel(f"Ticket-{interaction.user.name}", category=category,
                                                                     topic=f"{interaction.user.id}")
 
                     await ticket_channel.set_permissions(guild.get_role(TEAM_ROLE2), send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the Staff Team
@@ -208,23 +208,18 @@ class TicketOptions(discord.ui.View):
         channel = self.bot.get_channel(LOG_CHANNEL)
         ticket_creator = int(interaction.channel.topic)
 
-        print('delete_button 1')
         cur.execute("DELETE FROM ticket WHERE discord_id=?", (ticket_creator,)) #Delete the Ticket from the Database
         conn.commit()
-        print('delete_button 2')
         #Creating the Transcript
         military_time: bool = True
-        print('delete_button 2.1')
         transcript = await chat_exporter.export(
             interaction.channel,
-            #limit=200, 
-            #bot=self.bot,
+            limit=200, 
+            bot=self.bot,
         )   
-        print("delete_button 5")
         if transcript is None:
             return
         
-        print('delete_button 4')
         transcript_file = discord.File(
             io.BytesIO(transcript.encode()),
             filename=f"transcript-{interaction.channel.name}.html")
@@ -234,13 +229,15 @@ class TicketOptions(discord.ui.View):
         
         ticket_creator = guild.get_member(ticket_creator)
         embed = discord.Embed(description=f'Das Ticket wird in 5 Sekunden ausgeliefert.', color=0xff0000)
-        transcript_info = discord.Embed(title=f"Ticket-Löschung | {interaction.channel.name}", description=f"Ticket von: {ticket_creator.mention}\nTicket Name: {interaction.channel.name} \n Geschlossen von: {interaction.user.mention}", color=discord.colour.Color.blue())
+        msg = await ticket_creator.send(file=transcript_file)
+        link = await chat_exporter.link(msg)
+        transcript_info = discord.Embed(title=f"Ticket-Löschung | {interaction.channel.name}", description=f"Ticket von: {ticket_creator.mention}\nTicket Name: {interaction.channel.name} \n Geschlossen von: {interaction.user.mention} \n Hier ist der Link zum [Transkript]({link})", color=discord.colour.Color.blue())
 
         await interaction.response.send_message(embed=embed)
         #checks if user has dms disabled
         try:
-            print('delete_button 4')
-            await ticket_creator.send(embed=transcript_info, file=transcript_file)
+            await ticket_creator.send(embed=transcript_info)
+
         except:
             transcript_info.add_field(name="Fehler", value="Konnte das Transcript nicht an den User senden, da er seine DMs deaktiviert hat!", inline=True)
         await channel.send(embed=transcript_info, file=transcript_file2)

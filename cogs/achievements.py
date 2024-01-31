@@ -107,7 +107,6 @@ class Achievements(commands.Cog):
             self.cur.execute(f"update achievements set reaction_count = {user[3]+1}")
             self.conn.commit()
 
-            #Error papa
             if user[3]+1 == 10:
                 file = File(fp="cogs/img/Achievements/10Reaktion.png")
                 await channel.send(f"Herzliche Glückwunsch {user.name} Sie haben 10 Reagierte geschickt!", file=file)
