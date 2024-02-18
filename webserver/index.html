@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entbannung Antrag</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+
+    <script>
+      (function () {
+          console.log("HUHUHUHU");
+          document.addEventListener("scroll", (event) => {
+              console.log("BOPPPPP");
+              var $nav = document.querySelectorAll("#mainNavbar");
+              var body =  document.querySelectorAll("body");
+              if(body.scrollTop > $nav.height) {
+                $nav.classList.add('scrolled');
+              } else {
+                $nav.classList.remove("scrolled");
+              }
+          });
+      })();
+  </script>
+</head>
+
+<body>
+
+  <nav id="mainNavbar" class="navbar sticky-top navbar-expand-lg " data-bs-theme="dark" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="resources/image.png" alt="" id="lythia-img"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Bewerben</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Regelwerk</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Spenden</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          <svg width="59" height="40" viewBox="0 0 59 60" fill="none" xmlns="http://www.w3.org/2000/svg"
+            id="discord-icon">
+            <path
+              d="M49.1179 13.2081C44.4209 9.42837 36.9906 8.78767 36.6725 8.76462C36.1793 8.72314 35.7092 8.9997 35.5064 9.45603C35.4879 9.48369 35.3266 9.85705 35.1468 10.4378C38.2536 10.9633 42.0701 12.0188 45.5225 14.1622C46.0757 14.5033 46.2462 15.2316 45.9051 15.7847C45.6793 16.1488 45.2967 16.347 44.9003 16.347C44.6882 16.347 44.4716 16.2871 44.278 16.1673C38.3411 12.4844 30.9293 12.3 29.5004 12.3C28.0714 12.3 20.655 12.4844 14.7227 16.1673C14.1696 16.513 13.4413 16.3424 13.1002 15.7893C12.7545 15.2316 12.925 14.5079 13.4782 14.1622C16.9306 12.0235 20.7471 10.9633 23.8539 10.4424C23.6741 9.85705 23.5128 9.4883 23.4989 9.45603C23.2915 8.9997 22.826 8.71392 22.3282 8.76462C22.0101 8.78767 14.5798 9.42837 9.81832 13.2588C7.33387 15.5588 2.36035 28.9998 2.36035 40.62C2.36035 40.8274 2.41566 41.0256 2.51707 41.2054C5.94645 47.2345 15.3081 48.8109 17.4422 48.88C17.4514 48.88 17.4653 48.88 17.4791 48.88C17.8571 48.88 18.212 48.7002 18.4332 48.396L20.5904 45.4276C14.7688 43.9249 11.7957 41.3713 11.6252 41.2192C11.1366 40.7906 11.0905 40.0438 11.5238 39.5552C11.9525 39.0667 12.6992 39.0206 13.1878 39.4492C13.2569 39.5138 18.7329 44.16 29.5004 44.16C40.2863 44.16 45.7622 39.4953 45.8175 39.4492C46.3061 39.0252 47.0482 39.0667 47.4815 39.5599C47.9102 40.0485 47.8641 40.7906 47.3755 41.2192C47.205 41.3713 44.2319 43.9249 38.4103 45.4276L40.5675 48.396C40.7887 48.7002 41.1436 48.88 41.5216 48.88C41.5354 48.88 41.5493 48.88 41.5585 48.88C43.6926 48.8109 53.0543 47.2345 56.4836 41.2054C56.585 41.0256 56.6404 40.8274 56.6404 40.62C56.6404 28.9998 51.6668 15.5588 49.1179 13.2081ZM21.8304 35.9C19.5487 35.9 17.7004 33.7889 17.7004 31.18C17.7004 28.5711 19.5487 26.46 21.8304 26.46C24.112 26.46 25.9604 28.5711 25.9604 31.18C25.9604 33.7889 24.112 35.9 21.8304 35.9ZM37.1703 35.9C34.8887 35.9 33.0403 33.7889 33.0403 31.18C33.0403 28.5711 34.8887 26.46 37.1703 26.46C39.452 26.46 41.3004 28.5711 41.3004 31.18C41.3004 33.7889 39.452 35.9 37.1703 35.9Z"
+              fill="#F0FFF1" />
+          </svg>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <main>
+    <div class="row container-fluid">
+      <div class="row col-lg-6">
+
+      </div>
+      <div class="col-lg-6">
+
+      </div>
+
+      <section class="container-fluid px-0" id="welcome-container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div id="headingGroup" class="text-white">
+              <div class="container" id="welcome-text-phone">
+                <h1>Entbannung</h1>
+                <p>Hallo {{ user_name }}, hier können Sie sich entbannen lassen.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img class="col-right img-fluid" src="resources/skinrendernogmreen-1.png" id="welcome-img" />
+          </div>
+        </div>
+      </section>
+
+
+
+    </div>
+    <div class="warning">
+      <img src="resources/3643776-caution-exclamation-mark-round-sign-113410-1.svg" id="warning-img" />
+      <p id="warning-text">Sie können sich nur einmal entbannen lassen!</p>
+
+    </div>
+    <p id="vorlage">Brauchen Sie eine Vorlage, <button id="button-vorlage" class="btn btn-primary"><a id="vorlage-a"
+          href="#vorlage">klicken Sie hier </a></button></p>
+    <form action="/" method="post">
+      <textarea name="grund"></textarea>
+      <input type="submit" value="Abschicken" class="btn btn-success" id="abschicken" />
+      <input type="hidden" name="user_id" value="{{ user_id }}">
+    </form>
+
+    <a name="vorlage"></a>
+    <p class="vorlage-text">
+      Entbannungsantrag für [Dein Minecraft-Nickname]
+    </p>
+
+    <p class="vorlage-text">
+      Sehr geehrtes Serverteam von Lythia.de,<br><br>
+      ich wurde am [Datum] wegen [Grund des Bans] gebannt. Nach reiflicher Überlegung erkenne ich mein Fehlverhalten an
+      und möchte mich aufrichtig entschuldigen.
+      Grund für meinen Ban: [Hier den Grund angeben]<br><br>
+      Meine Einsicht und Entschuldigung: [Deine Einsicht und Entschuldigung]<br>
+      Maßnahmen, um ähnliche Vorfälle zu vermeiden: [Deine geplanten Maßnahmen]<br>
+      Ich hoffe aufrichtig, dass ihr meinen Entbannungsantrag in Betracht zieht und mir eine zweite Chance gebt. Ich
+      versichere, dass sich solche Vorfälle nicht wiederholen werden.
+      Vielen Dank für eure Zeit und Überlegung.
+    </p>
+    <p class="vorlage-text">
+      Mit freundlichen Grüßen,
+      [Dein Minecraft-Nickname]
+    </p>
+  </main>
+  <footer>
+    <span class="text-wrapper-6">© 2023 Lythia.de. All rights reserved. </span>
+    <a href="https://lythia.de/impressum.html" target="_blank" rel="noopener noreferrer">
+      <span class="text-wrapper-7">Impressum</span>
+    </a>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  
+</body>
+
+</html>

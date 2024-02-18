@@ -172,7 +172,7 @@ class Punishsystem(commands.Cog):
                 return
 
     @punish.command()
-    @discord.default_permissions(ban_members=True)
+    @discord.default_permissions(administrator=True)
     async def tempbantest(self, ctx: discord.ApplicationContext, 
                     user: Option(discord.Member, "Der User, den du vorübergehendes Banen mochtest"),
                     grund: Option(str, "Warum mochtest du denn spieler vorübergehendes Banen"), 

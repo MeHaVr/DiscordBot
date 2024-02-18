@@ -71,8 +71,9 @@ class Ping(commands.Cog):
         view.add_item(button)
 
         await ctx.respond(embed=embed, ephemeral=True, view=view)
-        
 
+
+    
 
 
 

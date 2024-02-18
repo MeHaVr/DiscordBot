@@ -34,6 +34,7 @@ class Welcome(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         info("welcome.py says hi")
+        
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
@@ -122,7 +123,7 @@ class Welcome(commands.Cog):
     
     print("nahc slashcommandGruope")
     @willkommen.command()
-    @discord.default_permissions(administrator=True)
+    @discord.default_permissions(administrator=True)  
     async def nachrichten(self, ctx: discord.ApplicationContext, optionen: Option(bool, "Willkommens Nachrichten aktivieren oder deaktivieren")):
 
         properties['willkommensnachrichten'] = optionen
