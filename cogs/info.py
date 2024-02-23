@@ -41,7 +41,7 @@ class Info(commands.Cog):
     async def rollen(self, ctx: discord.ApplicationContext, channel: Option(discord.TextChannel, "welchen channel rein schicken wilst")):
 
         embed = discord.Embed(title="Lythia.de Reaction Roles",
-                      description="In diesem Interface kannst du dir Rollen aussuchen, die mit den Informationen verbunden sind. Anstatt das wir everyone pingen, kannst du dir selber aussuchen zu welchen Themen du einen Ping bekommen willst.",
+                      description="In diesem Interface kannst du dir Rollen aussuchen, die mit den Informationen verbunden sind. Anstatt das wir everyone pingen, kannst du dir selber aussuchen zu welchen Themen du einen Ping bekommen willst. \n",
                       timestamp=datetime.now())
 
         embed.add_field(name="Um keine Informationen für die Bedrock Version zuverpassen | <:bedrock:1191107957929283594>",
@@ -59,6 +59,8 @@ class Info(commands.Cog):
 
         embed.set_footer(text="Rollen")
 
+        await channel.send(embed=embed, view=Rollen())
+        await ctx.respond("Die Rollen wurde gesendet")
     
 
 
@@ -68,17 +70,140 @@ def setup(bot):
 
 class Rollen(discord.ui.View):
     
-    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="<:bedrock:1191107957929283594>")
+    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="<:bedrock:1191107957929283594>", label="Bedrock | Informationen")
     async def button_callback(self, button, interaction):
-        
-        if "Event | Informationen" not in str(interaction.author.roles):
-            print("if")
 
+        found = False
+        bed_role = discord.utils.get(interaction.guild.roles, name='Bedrock | Informationen')
+
+        for role in interaction.user.roles:
+            if role.name == 'Bedrock | Informationen':
+                found = True 
+
+
+        if found:
+            await interaction.user.remove_roles(bed_role)
+
+            embed = discord.Embed(title="Die Rolle `Bedrock | Informationen` wurde entfernt",
+                      description="Sie können die Rolle wieder bekommen, klicke einfach auf Bedrock | Informationen Knopf.",
+                      colour=0xf50000,
+                      timestamp=datetime.now())
+            embed.set_author(name=f"Rollen | {interaction.user.guild.name}")
+            embed.set_footer(text="Lythia.de")
+
+            await interaction.response.send_message(embed=embed, ephemeral=True)
         else:
-            print("hi")
-    
+            await interaction.user.add_roles(bed_role)
+            embed = discord.Embed(title="Die Rolle `Bedrock | Informationen` wurde hinzuzufügt",
+                      description="Sie können die Rolle auch ent­fer­nen bekommen, klicke einfach auf `Bedrock | Informationen` Knopf.",
+                      colour=0x00ff1e,
+                      timestamp=datetime.now())
+            embed.set_author(name=f"Rollen | {interaction.user.guild.name}")
+            embed.set_footer(text="Lythia.de")
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+
+    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="<:ankundinung:1191107952501850212>", label="Server | Informationen")
+    async def button_callback_2(self, button, interaction):
+
+        found = False
+        bed_role = discord.utils.get(interaction.guild.roles, name='Server | Informationen')
+
+        for role in interaction.user.roles:
+            if role.name == 'Server | Informationen':
+                found = True 
 
 
+        if found:
+            await interaction.user.remove_roles(bed_role)
+            embed = discord.Embed(title="Die Rolle `Server | Informationen` wurde entfernt",
+                      description="Sie können die Rolle wieder bekommen, klicke einfach auf `Server | Informationen` Knopf.",
+                      colour=0xf50000,
+                      timestamp=datetime.now())
+
+            embed.set_author(name=f"Rollen | {interaction.user.guild.name}")
+            embed.set_footer(text="Lythia.de")
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+        else:
+            embed = discord.Embed(title="Die Rolle `Server | Informationen` wurde hinzuzufügt",
+            description="Sie können die Rolle auch ent­fer­nen bekommen, klicke einfach auf `Server | Informationen` Knopf.",
+            colour=0x00ff1e,
+            timestamp=datetime.now())
+            embed.set_author(name=f"Rollen | {interaction.user.guild.name}")
+            embed.set_footer(text="Lythia.de")
+
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            await interaction.user.add_roles(bed_role)
+            
+
+    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="<:event:1191107953743368333>", label="Event | Informationen")
+    async def button_callback_3(self, button, interaction):
+
+        found = False
+        bed_role = discord.utils.get(interaction.guild.roles, name='Event | Informationen')
+
+        for role in interaction.user.roles:
+            if role.name == 'Event | Informationen':
+                found = True 
+
+
+        if found:
+            embed = discord.Embed(title="Die Rolle `Event | Informationen` wurde entfernt",
+            description="Sie können die Rolle wieder bekommen, klicke einfach auf `Event | Informationen` Knopf.",
+            colour=0xf50000,
+            timestamp=datetime.now())
+
+            embed.set_author(name=f"Rollen | {interaction.user.guild.name}")
+            embed.set_footer(text="Lythia.de")
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            await interaction.response.send_message("Die Rolle `Event | Informationen` wurde entfernt", ephemeral=True)
+        else:
+            await interaction.user.add_roles(bed_role)
+
+            embed = discord.Embed(title="Die Rolle `Event | Informationen` wurde hinzuzufügt",
+            description="Sie können die Rolle auch ent­fer­nen bekommen, klicke einfach auf `Server | Informationen` Knopf.",
+            colour=0x00ff1e,
+            timestamp=datetime.now())
+            embed.set_author(name=f"Rollen | {interaction.user.guild.name}")
+            embed.set_footer(text="Lythia.de")
+            
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+
+    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="<:java:1191107956578713620>", label="Java | Informationen")
+    async def button_callback_4(self, button, interaction):
+
+        found = False
+        bed_role = discord.utils.get(interaction.guild.roles, name='Java | Informationen')
+
+        for role in interaction.user.roles:
+            if role.name == 'Java | Informationen':
+                found = True 
+
+        if found:
+            embed = discord.Embed(title="Die Rolle `Java | Informationen` wurde entfernt",
+            description="Sie können die Rolle wieder bekommen, klicke einfach auf `Java | Informationen` Knopf.",
+            colour=0xf50000,
+            timestamp=datetime.now())
+
+            embed.set_author(name=f"Rollen | {interaction.user.guild.name}")
+            embed.set_footer(text="Lythia.de")
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            
+        else:
+            await interaction.user.add_roles(bed_role)
+            
+            embed = discord.Embed(title="Die Rolle `Java | Informationen` wurde hinzuzufügt",
+            description="Sie können die Rolle auch ent­fer­nen bekommen, klicke einfach auf `Java | Informationen` Knopf.",
+            colour=0x00ff1e,
+            timestamp=datetime.now())
+            embed.set_author(name=f"Rollen | {interaction.user.guild.name}")
+            embed.set_footer(text="Lythia.de")
+            
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+
+
+        
+
+        
 
 
         

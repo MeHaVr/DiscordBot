@@ -2,7 +2,7 @@ from discord import Bot, Intents
 import time
 import yaml
 from icecream import ic
-server_guild = 876068862754447391
+server_guild = 1180536174633304184
 
 intents = Intents.default()
 intents.message_content = True
