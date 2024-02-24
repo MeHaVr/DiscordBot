@@ -12,6 +12,7 @@ from cogs.punishsystem import Punishsystem
 from cogs.info import Info
 from cogs.ticket.ticket_commands import Ticket_Command
 from cogs.ticket.ticket_system import Ticket_System
+from cogs.mod import Mod
 from webserver.webserver import webserver_main 
 
 
@@ -28,6 +29,7 @@ bot.add_cog(Punishsystem())
 bot.add_cog(Info())
 bot.add_cog(Ticket_Command(bot))
 bot.add_cog(Ticket_System(bot))
+bot.add_cog(Mod())
 
 # asyncio.run(bot.add_cog(Achievements()))
 # asyncio.run(bot.add_cog(voicechannel()))
