@@ -18,7 +18,7 @@ body {
 }
 
 
-#headingGroup {
+#welcome-text-phone {
     margin-bottom: 50%;
     margin-left: 35%;
     text-align: left;
@@ -98,16 +98,17 @@ p.vorlage-text {
 }
 
 @media (max-width: 987px) {
-    #welcome-img {
+    #img-div {
         display: none;
     }
-    #headingGroup {
-        display: block;
+    #welcome-text-phone {
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         text-align: center;
-        margin-top: 1%;
-        margin-left: 12%;
-
+        margin-top: 5%;
+        margin-bottom: 10%;
+        margin-left: auto;
     }
     #warning-text {
         margin-bottom: 5%;
