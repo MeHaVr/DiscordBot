@@ -22,6 +22,7 @@ properties = {
     'willkommensnachrichten': True,
     'punishsystem-logchat': 1180536179754541150,
     'server-guild-id': 1180536174633304184,
+    'server-guild-number': 1180536176139059322,
     'welcome-channel': 1180536176139059327,
     'Entbannung-channel': 1180536176663339040,
     'banned-users': [], 
@@ -31,7 +32,8 @@ properties = {
     'ticket_kategory_2': 1180536181725864019,
     'team_role_id_1': 1180536174880768025,
     'team_role_id_2': 1180536174880768025,
-    'guildmember': 1180536176139059322
+    'guildmember': 1180536176139059322,
+    'mod_blacklist_channels': [1180536179247038577]
      
 }
 

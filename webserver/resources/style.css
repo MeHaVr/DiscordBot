@@ -68,6 +68,7 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
 }
 textarea {
     width: 80%;
@@ -75,6 +76,8 @@ textarea {
     background-color: #01090e;
     border-radius: 0.5rem;
     padding: 5px;
+    color: white;
+    
 }
 #abschicken {
     margin-top: 0.5%;

@@ -25,11 +25,10 @@ class Welcome(commands.Cog):
 
     willkommen = SlashCommandGroup("willkommen", description="willkommennachricht verwalten", default_permissions=discord.Permissions(administrator=True))
 
-    guild = bot.get_guild(properties['server-guild-id'])
-    guildmember = bot.get_channel(int(properties['server-guild-id']))
+
     
 
-    print(guild)
+
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -41,16 +40,12 @@ class Welcome(commands.Cog):
 
         info("New user")
 
-        guild = bot.get_guild(properties['server-guild-id'])
-        guildmember = bot.get_channel(int(properties['server-guild-id']))
-        channel = bot.get_channel(1180536176139059327)
+        guild = await bot.fetch_guild(properties['server-guild-id'])
+        guildmember = await bot.fetch_channel(int(properties['server-guild-number'])) 
+        channel = await bot.fetch_channel(int(properties['welcome-channel'])) 
 
         if properties['willkommensnachrichten']:
             #bild Generieren 
-
-            guild = bot.get_guild(properties['server-guild-id'])
-            guildmember = bot.get_channel(int(properties['server-guild-id']))
-            channel = bot.get_channel(1180536176139059327)
             Background = Editor("cogs/img/welcome.jpg")
             profile_image = await load_image_async(str(member.display_avatar.url))
 
@@ -96,11 +91,7 @@ class Welcome(commands.Cog):
             #Edit channel
             
 
-            guild = bot.get_guild(properties['server-guild-id'])
-            guildmember = bot.get_channel(int(properties['server-guild-id']))
-            channel = bot.get_channel(1180536176139059327)
-
-            await guildmember.edit(name = f'🚶〣╠- Spieler • {guild.member_count}')
+            await guildmember.edit(name = f'🚶〣╠- Spieler • {guild.approximate_member_count}')
             await channel.edit(topic = f"Hallo {member.mention}! Willkommen auf **{member.guild.name}**")
 
         else:
@@ -112,16 +103,13 @@ class Welcome(commands.Cog):
     @commands.Cog.listener()
     async def on_raw_member_remove(self, member):
 
-        guild = bot.get_guild(properties['server-guild-id'])
-        guildmember = bot.get_channel(int(properties['server-guild-id']))
-
-        ic(member)
+        guild = await bot.fetch_guild(properties['server-guild-id'])
+        guildmember = await bot.fetch_channel(int(properties['server-guild-number'])) 
+        ic(member) 
     
-        await guildmember.edit(name = f'🚶〣╠- Spieler • {guild.member_count}')
+        await guildmember.edit(name = f'🚶〣╠- Spieler • {guild.approximate_member_count}')
 
-    print("vor slachcommandgroup")
-    
-    print("nahc slashcommandGruope")
+
     @willkommen.command()
     @discord.default_permissions(administrator=True)  
     async def nachrichten(self, ctx: discord.ApplicationContext, optionen: Option(bool, "Willkommens Nachrichten aktivieren oder deaktivieren")):
@@ -131,7 +119,6 @@ class Welcome(commands.Cog):
 
         await ctx.respond(f"Es wurde erfolgreich auf {optionen}")
 
-    print("nachrichten command")
     @willkommen.command()
     @discord.default_permissions(administrator=True)
     async def chat(self, ctx: discord.ApplicationContext, 
@@ -141,8 +128,6 @@ class Welcome(commands.Cog):
         save_properties()
         
         await ctx.respond(f"Es wurde erfolgreich auf {willkommennachricht.mention} gestellt")
-
-    print("chat an aus")
 
 
 

@@ -38,10 +38,10 @@ class MainHandler(tornado.web.RequestHandler):
                 user_id = bu['id']
 
         if user_name == None:
-            with open('webserver/error.html.j2') as file:
+            with open('webserver/error.html') as file:
                 page = Template(file.read()).render()
         else:    
-            with open('webserver/index.html.j2', 'r') as file:
+            with open('webserver/index.html.j2', 'r',encoding="utf-8") as file:
                 page = Template(file.read()).render(
                     user_name = user_name,
                     user_id = user_id

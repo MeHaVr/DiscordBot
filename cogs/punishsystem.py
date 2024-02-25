@@ -19,12 +19,14 @@ Entbannungname = {}
 async def entbannen(user_id, grund):
 
     channel = bot.get_channel(properties['Entbannung-channel'])
-    user = bot.get_user(int(user_id))   
-
+    user = await bot.fetch_user(int(user_id))   
+    ic(user_id)
+    ic(user)
     embed = discord.Embed(title="Lythia.de | Entbannung Antrag",
         description=f"{grund}\n\n **Von**: {user.name}",
         timestamp=datetime.now())
     embed.set_footer(text="Lythia.de")
+
 
     await channel.send(embed=embed, view=EntbannungsCheck(user=user))
 
@@ -51,10 +53,12 @@ class Punishsystem(commands.Cog):
                    user: Option(discord.Member, "Der User, den du kicken mochtest"),
                     grund: Option(str, "Warum mochtest du denn spieler kicken")):
         
+        channel = bot.get_channel(properties['punishsystem-logchat'])
 
-        print(user.bot)
-        if user.bot:
-            await ctx.respond("Du kannst keine bots kicken") 
+        ic(user.bot)
+        ic(ctx.author.id)
+        if user.bot and not ctx.author.id == 530754790875987971: 
+            await ctx.respond("Du kannst keine bots Kicken nur der Owner kann das!") 
             return
 
 
@@ -71,9 +75,14 @@ class Punishsystem(commands.Cog):
             embed.set_author(name=f"{ctx.guild.name}",
             icon_url=f"{ctx.guild.icon}") 
 
-            await user.send(embed=embed)
-            
-            await ctx.guild.kick(user, reason=grund)
+            try:
+                await user.send(embed=embed)
+            except:
+                await ctx.respond("Konnte das Embed nicht an den User senden, da er seine DMs deaktiviert hat!") 
+            try:
+                await ctx.guild.kick(user, reason=grund)
+            except:
+                await ctx.respond("Ich habe nicht genügend Rechte")
             
             embed1 = discord.Embed(description=f"<:owner:1188533098858680380> **Moderator:**   {ctx.author.mention}  \n<:user:1188537503255379988> **Ziel:** {user.mention}\n<:info:1188533072359071754> **Grund:** `{grund}`\n<:clock:1188533044999639130> **Uhrzeit:** `{time.strftime('%H:%M %Y/%m/%d')}`",
                       colour=0xff7b00)                                                                     
@@ -100,6 +109,7 @@ class Punishsystem(commands.Cog):
                     minuten: Option(int, "Wie viel minute wenn du mochtest weniger als ein minute, dann schreib nichts.", required=False), 
                     sekunde: Option(int, "Wie viel Tage wenn du mochtest weniger als ein Tag, dann schreib nichts.", required=False)):
 
+        channel = bot.get_channel(properties['punishsystem-logchat'])
 
         delta = timedelta(
             days=(tage or 0), 
@@ -165,103 +175,103 @@ class Punishsystem(commands.Cog):
                 await ctx.respond("Du darfst nicht Teammitglieder Vorübergehendes Ban")
             else:
                 try:     
-                    #await user.timeout_for(duration=delta, reason=grund)
-                    print("es geht nicht")
+                    await user.timeout_for(duration=delta, reason=grund)
                 except discord.errors.Forbidden:
                     await ctx.respond(f"Nicht genugend Rechte, informiere bitte ein Admin oder <@530754790875987971>")
                 return
 
-    @punish.command()
-    @discord.default_permissions(administrator=True)
-    async def tempbantest(self, ctx: discord.ApplicationContext, 
-                    user: Option(discord.Member, "Der User, den du vorübergehendes Banen mochtest"),
-                    grund: Option(str, "Warum mochtest du denn spieler vorübergehendes Banen"), 
-                    tage: Option(int, "Wie viel Tage wenn du mochtest weniger als ein Tag, dann schreib nichts.", required=False), 
-                    stunden: Option(int, "Wie viel Stunden wenn du mochtest weniger als ein Stunde, dann schreib nichts.", required=False), 
-                    minuten: Option(int, "Wie viel minute wenn du mochtest weniger als ein minute, dann schreib nichts.", required=False), 
-                    sekunde: Option(int, "Wie viel Tage wenn du mochtest weniger als ein Tag, dann schreib nichts.", required=False)):
-
-        channel = bot.get_channel(properties['punishsystem-logchat'])
-        delta = timedelta(
-            days=(tage or 0), 
-            hours=(stunden or 0), 
-            minutes=(minuten or 0), 
-            seconds=(sekunde or 0)
-        )
-
-        zero = timedelta(
-            days=0, 
-            hours=0, 
-            minutes=0, 
-            seconds=0)
-
-        if delta == zero: 
-            await ctx.respond("Bitte gib eine zeit an")
-            return
-
-        print(delta)
-        print(user.bot)
-
-        if user.bot or not ctx.author.id == 530754790875987971:
-            await ctx.respond("Du kannst keine bots vorübergehendes Ban") 
-            return
-
-
-        #if user.name == ctx.author.name:
-        #    await ctx.respond("Du kannst dich nicht selber vorübergehendes Banen")
-        #   return
-        
-        if "▬▬▬▬[ Team - LY ]▬▬▬▬" not in str(user.roles) or ctx.author.id == 530754790875987971:
-
-            try:     
-                #ban.start(user=user, reason=grund, delta=delta)
-                await ctx.respond("Tempban is noch in arbeit")
-            except discord.errors.Forbidden:
-                await ctx.respond(f"Nicht genugend Rechte, informiere bitte ein Admin oder <@530754790875987971>")
-                return
-                
-
-            await ctx.respond("Vorübergehendes Ban war erfolgreich")
-
-            embed = discord.Embed(title="<:user:1188537503255379988> Sie wurden Vorübergehendes gebant",
-            description=f"\n <:info:1188533072359071754> **Grund:** `{grund}`\n <:clock:1188533044999639130>  **Dauer:** `{delta}`\n <:owner:1188533098858680380> **Von:** {ctx.author.mention}\n")
-            embed.set_author(name=f"{ctx.guild.name}",
-            icon_url=f"{ctx.guild.icon}") 
-
-            letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            unban_token = ''.join(random.choice(letters) for i in range(32))
-
-            properties['banned-users'].append({
-                'id': user.id, 
-                'name': user.name, 
-                'unban_token': unban_token })
-
-            link = f'http://localhost:8888?unban_token={unban_token}'
-
-            button = discord.ui.Button(label="Entbannung Antrag", url=link)
-            view = discord.ui.View()
-            view.add_item(button)
-
-            await user.send(embed=embed, view=view)
-            
-            
-            #channel send and embed bulder
-            embed1 = discord.Embed(description=f"<:owner:1188533098858680380> **Moderator:**   {ctx.author.mention}  \n<:user:1188537503255379988> **Ziel:** {user.mention}\n<:info:1188533072359071754> **Grund:** `{grund}`\n<:clock:1188533044999639130> **Uhrzeit:** `{time.strftime('%H:%M %Y/%m/%d')}`",
-                      colour=0xff7b00)                                                                     
-
-            embed1.set_author(name="Vorübergehendes Ban",
-            icon_url=f"{user.display_avatar}")
-
-            await channel.send(embed=embed1) 
-
-            save_properties()
-
-            
-
-            return
-
-        else:
-                await ctx.respond("Du darfst nicht Teammitglieder Vorübergehendes Ban")
+#    @punish.command()
+#    @discord.default_permissions(administrator=True)
+#    async def tempbantest(self, ctx: discord.ApplicationContext, 
+#                    user: Option(discord.Member, "Der User, den du vorübergehendes Banen mochtest"),
+#                    grund: Option(str, "Warum mochtest du denn spieler vorübergehendes Banen"), 
+#                    tage: Option(int, "Wie viel Tage wenn du mochtest weniger als ein Tag, dann schreib nichts.", required=False), 
+#                    stunden: Option(int, "Wie viel Stunden wenn du mochtest weniger als ein Stunde, dann schreib nichts.", required=False), 
+#                    minuten: Option(int, "Wie viel minute wenn du mochtest weniger als ein minute, dann schreib nichts.", required=False), 
+#                    sekunde: Option(int, "Wie viel Tage wenn du mochtest weniger als ein Tag, dann schreib nichts.", required=False)):
+#
+#        channel = bot.get_channel(properties['punishsystem-logchat'])
+#        delta = timedelta(
+#            days=(tage or 0), 
+#            hours=(stunden or 0), 
+#            minutes=(minuten or 0), 
+#            seconds=(sekunde or 0)
+#        )
+#
+#        zero = timedelta(
+#            days=0, 
+#            hours=0, 
+#            minutes=0, 
+#            seconds=0)
+#
+#        if delta == zero: 
+#            await ctx.respond("Bitte gib eine zeit an")
+#            return
+#
+#        print(delta)
+#        print(user.bot)
+#
+#        if user.bot and not ctx.author.id == 530754790875987971: 
+#            await ctx.respond("Du kannst keine bots TempBanen nur der Owner kann das!") 
+#            return
+#
+#
+#        if user.name == ctx.author.name:
+#            await ctx.respond("Du kannst dich nicht selber vorübergehendes Banen")
+#            return
+#        
+#        if "▬▬▬▬[ Team - LY ]▬▬▬▬" not in str(user.roles) or ctx.author.id == 530754790875987971:
+#
+#            try:     
+#                ban.start(user=user, reason=grund, delta=delta)
+#                await user.ban()
+#                await ctx.respond("Tempban is noch in arbeit")
+#            except discord.errors.Forbidden:
+#                await ctx.respond(f"Nicht genugend Rechte, informiere bitte ein Admin oder <@530754790875987971>")
+#                return
+#                
+#
+#            await ctx.respond("Vorübergehendes Ban war erfolgreich")
+#
+#            embed = discord.Embed(title="<:user:1188537503255379988> Sie wurden Vorübergehendes gebant",
+#            description=f"\n <:info:1188533072359071754> **Grund:** `{grund}`\n <:clock:1188533044999639130>  **Dauer:** `{delta}`\n <:owner:1188533098858680380> **Von:** {ctx.author.mention}\n")
+#            embed.set_author(name=f"{ctx.guild.name}",
+#            icon_url=f"{ctx.guild.icon}") 
+#
+#            letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+#            unban_token = ''.join(random.choice(letters) for i in range(32))
+#
+#            properties['banned-users'].append({
+#                'id': user.id, 
+#                'name': user.name, 
+#                'unban_token': unban_token })
+#
+#            link = f'http://localhost:8888?unban_token={unban_token}'
+#
+#            button = discord.ui.Button(label="Entbannung Antrag", url=link)
+#            view = discord.ui.View()
+#            view.add_item(button)
+#
+#            await user.send(embed=embed, view=view)
+#            
+#            
+#            #channel send and embed bulder
+#            embed1 = discord.Embed(description=f"<:owner:1188533098858680380> **Moderator:**   {ctx.author.mention}  \n<:user:1188537503255379988> **Ziel:** {user.mention}\n<:info:1188533072359071754> **Grund:** `{grund}`\n<:clock:1188533044999639130> **Uhrzeit:** `{time.strftime('%H:%M %Y/%m/%d')}`",
+#                      colour=0xff7b00)                                                                     
+#
+#            embed1.set_author(name="Vorübergehendes Ban",
+#            icon_url=f"{user.display_avatar}")
+#
+#            await channel.send(embed=embed1) 
+#
+#            save_properties()
+#
+#            
+#
+#            return
+#
+#        else:
+#                await ctx.respond("Du darfst nicht Teammitglieder Vorübergehendes Ban")
             
     @punish.command()
     @discord.default_permissions(ban_members=True)
@@ -284,7 +294,7 @@ class Punishsystem(commands.Cog):
         
             if "▬▬▬▬[ Team - LY ]▬▬▬▬" not in str(user.roles) or ctx.author.id == 530754790875987971:
                 
-                guild = bot.get_guild(properties['server-guild-id'])
+                guild = await bot.fetch_guild(properties['server-guild-id'])
                 
                 await ctx.respond("Perma Ban war erfolgreich")
 
@@ -293,14 +303,31 @@ class Punishsystem(commands.Cog):
                 embed.set_author(name=f"{ctx.guild.name}",
                 icon_url=f"{ctx.guild.icon}") 
 
-                await user.send(embed=embed, view=EntbannungAntrag())
+                #link Generator
+
+                letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+                unban_token = ''.join(random.choice(letters) for i in range(32))
+
+                properties['banned-users'].append({
+                    'id': user.id, 
+                    'name': user.name, 
+                    'unban_token': unban_token })
+
+                link = f'http://localhost:8888?unban_token={unban_token}'
+
+                button = discord.ui.Button(label="Entbannung Antrag", url=link)
+                view = discord.ui.View()
+                view.add_item(button)
+
+                await user.send(embed=embed, view=view)
+                
 
                 try:     
                     await guild.ban(user=user, reason=grund)
                 except discord.errors.Forbidden:
                     await ctx.respond(f"Nicht genugend Rechte, informiere bitte ein Admin oder <@530754790875987971>")
                     return
-            
+                save_properties()
             
                 #channel send and embed bulder
                 embed1 = discord.Embed(description=f"<:owner:1188533098858680380> **Moderator:**   {ctx.author.mention}  \n<:user:1188537503255379988> **Ziel:** {user.mention}\n<:info:1188533072359071754> **Grund:** `{grund}`\n<:clock:1188533044999639130> **Uhrzeit:** `{time.strftime('%H:%M %Y/%m/%d')}`",
@@ -443,38 +470,16 @@ class EntbannungsCheckAblehnen(discord.ui.View):
     @discord.ui.button(label="Ja, ich bin sicher", style=discord.ButtonStyle.success)
     async def button_callbackN(self, button, interaction):
 
-        embed = discord.Embed(title="Lythia.de | Abgelehnt",
-                      description="**Leider wurde Ihre Entbannungs Antrag abgehlenhnt**.",
-                      colour=0xdc0c00,
-                      timestamp=datetime.now())
-
-        embed.set_footer(text="Programmiert von MeHaVr")
-
         properties['Entbannungs-ignorieren-liste'].append(self.user.id)
         save_properties()
-
-        await self.user.send(embed=embed)
 
         await interaction.response.send_message("Es wurde abgelehnt")
 
     @discord.ui.button(label="Entbanungs Antrag Annehmen", style=discord.ButtonStyle.danger)
     async def button_callbackJ(self, button, interaction):
 
-        embed = discord.Embed(title="Lythia.de | Angenommen",
-                      url="https://discord.gg/rNmDXM4jM4",
-                      description="**Herzlichsten Glückwünsche es wurde Angenommen**.\n\n> **INFO: nächste Ban ist ein 6 Monate Temporar Ban**\n\nDiscord Link: https://discord.gg/rNmDXM4jM4",
-                      colour=0xee8b00,
-                      timestamp=datetime.now())
-
-        embed.set_footer(text="Lythia.de")
-
-        grund = f"Entbannungs Antrag wurde angenomen von {interaction.user.name}"
-        guild = bot.get_guild(properties['server-guild-id'])
-        ic(guild, properties['server-guild-id'])
-
         try:
-            await guild.unban(user=self.user, reason=grund)
-            await self.user.send(embed=embed)
+            await interaction.guild.unban(user=self.user, reason="Entbannung Antrage")
         except discord.errors.NotFound:
             await interaction.response.send_message("Error User NotFound | Sehr warscheintlich ist  der User nicht gebant Bitte informiere bitte ein Admin oder <@530754790875987971>")
             return
@@ -500,21 +505,14 @@ class EntbannungsCheckAnnehmen(discord.ui.View):
     @discord.ui.button(label="Ja, ich bin sicher", style=discord.ButtonStyle.success)
     async def button_callbackJ(self, button, interaction):
 
-        embed = discord.Embed(title="Lythia.de | Angenommen",
-                      url="https://discord.gg/rNmDXM4jM4",
-                      description="**Herzlichsten Glückwünsche es wurde Angenommen**.\n\n> **INFO: nächste Ban ist ein 6 Monate Temporar Ban**\n\nDiscord Link: https://discord.gg/rNmDXM4jM4",
-                      colour=0xee8b00,
-                      timestamp=datetime.now())
 
-        embed.set_footer(text="Lythia.de")
 
         grund = f"Entbannungs Antrag wurde angenomen von {interaction.user.name}"
-        guild = bot.get_guild(properties['server-guild-id'])
+        guild = await bot.fetch_guild(properties['server-guild-id'])
         ic(guild, properties['server-guild-id'])
 
         try:
             await guild.unban(user=self.user, reason=grund)
-            await self.user.send(embed=embed)
         except discord.errors.NotFound:
             await interaction.response.send_message("Error User NotFound | Sehr warscheintlich ist  der User nicht gebant Bitte informiere bitte ein Admin oder <@530754790875987971>")
             return
@@ -540,8 +538,6 @@ class EntbannungsCheckAnnehmen(discord.ui.View):
 
         properties['Entbannungs-ignorieren-liste'].append(self.user.id)
         save_properties()
-
-        await self.user.send(embed=embed)
 
         await interaction.response.send_message("Es wurde abgelehnt")
 
