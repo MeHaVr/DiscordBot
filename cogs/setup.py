@@ -30,7 +30,8 @@ properties = {
     'ticket_kategory_1': 1180536181725864021,
     'ticket_kategory_2': 1180536181725864019,
     'team_role_id_1': 1180536174880768025,
-    'team_role_id_2': 1180536174880768025
+    'team_role_id_2': 1180536174880768025,
+    'guildmember': 1180536176139059322
      
 }
 
