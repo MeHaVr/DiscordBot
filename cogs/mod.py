@@ -66,7 +66,7 @@ class Mod(commands.Cog):
             )
 
             embed_log = discord.Embed(title="<:user:1188537503255379988> Timeout",
-            description=f"\n <:info:1188533072359071754> **Grund:** `Belästigung im Chat`\n <:clock:1188533044999639130>  **Dauer:** `{delta}`\n**Nachricht:** `{message.content}` \n\n **Mehr Info**: \n{output.categories}")
+            description=f"\n <:info:1188533072359071754> **Grund:** `Belästigung im Chat`\n <:clock:1188533044999639130>  **Dauer:** `{delta}`\n**Nachricht:** `{message.content}` \n**User:** `{message.author.mention}`\n\n **Mehr Info**: \n{output.categories}")
             embed.set_author(name=f"{message.guild.name}",
             icon_url=f"{message.guild.icon}") 
 
@@ -99,7 +99,7 @@ class Mod(commands.Cog):
             )
 
             embed_log = discord.Embed(title="<:user:1188537503255379988> Timeout",
-            description=f"\n <:info:1188533072359071754> **Grund:** `Selbstverletzung oder Anleitung zur Selbstverletzung erkannt`\n <:clock:1188533044999639130>\n  **Nachricht:** `{message.content}`\n\n **Mehr Info**: \n{output.categories}")
+            description=f"\n <:info:1188533072359071754> **Grund:** `Selbstverletzung oder Anleitung zur Selbstverletzung erkannt`\n <:clock:1188533044999639130>\n  **Nachricht:** `{message.content}`\n**User:** `{message.author.mention}` \n\n **Mehr Info**: \n{output.categories}")
             embed.set_author(name=f"{message.guild.name}",
             icon_url=f"{message.guild.icon}") 
             embed_log.set_footer(text="Powered by AI")
@@ -128,7 +128,7 @@ class Mod(commands.Cog):
                 minutes=(10)
             )
             embed_log = discord.Embed(title="<:user:1188537503255379988> Timeout",
-            description=f"\n <:info:1188533072359071754> **Grund:** `Hass oder Drohung erkannt`\n <:clock:1188533044999639130>  **Nachricht:** `{message.content}`\n\n **Mehr Info**: \n{output.categories}")
+            description=f"\n <:info:1188533072359071754> **Grund:** `Hass oder Drohung erkannt`\n <:clock:1188533044999639130>  **Nachricht:** `{message.content}`\n**User:** `{message.author.mention}` \n\n **Mehr Info**: \n{output.categories}")
             embed.set_author(name=f"{message.guild.name}",
             icon_url=f"{message.guild.icon}") 
             embed_log.set_footer(text="Powered by AI")
@@ -159,7 +159,7 @@ class Mod(commands.Cog):
             )
 
             embed_log = discord.Embed(title="<:user:1188537503255379988> Timeout",
-            description=f"\n <:info:1188533072359071754> **Grund:** `Sexuell oder Sexuelle Minderjährige erkannt`\n <:clock:1188533044999639130>\n  **Nachricht:** `{message.content}`\n\n **Mehr Info**: \n{output.categories}\n\n Ist das eine Felermeldung?")
+            description=f"\n <:info:1188533072359071754> **Grund:** `Sexuell oder Sexuelle Minderjährige erkannt`\n <:clock:1188533044999639130>\n  **Nachricht:** `{message.content}`\n**User:** `{message.author.mention}` \n\n **Mehr Info**: \n{output.categories}\n\n Ist das eine Felermeldung?")
             embed.set_author(name=f"{message.guild.name}",
             icon_url=f"{message.guild.icon}") 
             embed_log.set_footer(text="Powered by AI")
@@ -188,7 +188,7 @@ class Mod(commands.Cog):
                 minutes=(10)
             )
             embed_log = discord.Embed(title="<:user:1188537503255379988> Timeout",
-            description=f"\n <:info:1188533072359071754> **Grund:** `Hass oder Drohung erkannt`\n <:clock:1188533044999639130>  **Nachricht:** `{message.content}`\n\n **Mehr Info**: \n{output.categories}")
+            description=f"\n <:info:1188533072359071754> **Grund:** `Hass oder Drohung erkannt`\n <:clock:1188533044999639130>  **Nachricht:** `{message.content}`\n**User:** `{message.author.mention}` \n\n **Mehr Info**: \n{output.categories}")
             embed.set_author(name=f"{message.guild.name}",
             icon_url=f"{message.guild.icon}") 
             embed_log.set_footer(text="Powered by AI")
