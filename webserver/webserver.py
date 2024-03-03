@@ -38,10 +38,10 @@ class MainHandler(tornado.web.RequestHandler):
                 user_id = bu['id']
 
         if user_name == None:
-            with open('webserver/error.html') as file:
+            with open('DiscordBot/webserver/error.html','r',encoding="utf-8") as file:
                 page = Template(file.read()).render()
         else:    
-            with open('webserver/index.html.j2', 'r',encoding="utf-8") as file:
+            with open('DiscordBot/webserver/index.html.j2', 'r',encoding="utf-8") as file:
                 page = Template(file.read()).render(
                     user_name = user_name,
                     user_id = user_id
@@ -58,7 +58,7 @@ class MainHandler(tornado.web.RequestHandler):
 
 def make_app():
     return tornado.web.Application([
-        (r"/resources/(.*)", tornado.web.StaticFileHandler, {"path": "./webserver/resources"}),
+        (r"/resources/(.*)", tornado.web.StaticFileHandler, {"path": "./DiscordBot/webserver/resources"}),
         (r"/", MainHandler),
     ])
 
