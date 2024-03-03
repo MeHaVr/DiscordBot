@@ -313,7 +313,7 @@ class Punishsystem(commands.Cog):
                     'name': user.name, 
                     'unban_token': unban_token })
 
-                link = f'http://localhost:8888?unban_token={unban_token}'
+                link = f'https://lythia.de/entbannung?unban_token={unban_token}'
 
                 button = discord.ui.Button(label="Entbannung Antrag", url=link)
                 view = discord.ui.View()
