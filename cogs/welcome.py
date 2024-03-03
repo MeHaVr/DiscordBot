@@ -91,7 +91,7 @@ class Welcome(commands.Cog):
             #Edit channel
             
 
-            await guildmember.edit(name = f'🚶〣╠- Spieler • {guild.approximate_member_count}')
+            await guildmember.edit(name = f'📈｜Spieler • {guild.approximate_member_count}')
             await channel.edit(topic = f"Hallo {member.mention}! Willkommen auf **{member.guild.name}**")
 
         else:

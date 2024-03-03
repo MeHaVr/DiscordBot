@@ -73,6 +73,7 @@ class Ping(commands.Cog):
         await ctx.respond(embed=embed, ephemeral=True, view=view)
 
 
+
     
 
 
