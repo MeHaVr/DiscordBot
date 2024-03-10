@@ -59,7 +59,9 @@ class Info(commands.Cog):
 
         embed.set_footer(text="Rollen")
 
+
         await channel.send(embed=embed, view=Rollen())
+        await channel.send("<:E_:1154491760274313367>")
         await ctx.respond("Die Rollen wurde gesendet")
     
 
