@@ -10,6 +10,8 @@ from discord.ext import commands
 from discord.ext.commands import has_permissions
 from cogs.ticket.ticket_system import MyView
 from cogs.setup import properties, bot, save_properties, info, error
+from cogs.setup import bot,server_guild, info, properties, save_properties
+from discord.commands import Option, options, option
 
 #This will get everything from the config.json file
 
@@ -50,10 +52,10 @@ class Ticket_Command(commands.Cog):
     #Slash Command to show the Ticket Menu in the Ticket Channel only needs to be used once
     @ticket.command(name="ticket")
     @default_permissions(administrator=True)
-    async def send(self, ctx):
-        self.channel = self.bot.get_channel(TICKET_CHANNEL)
+    async def send(self, ctx, channel: Option(discord.TextChannel, "welchen channel rein schicken wilst")):
+        
         embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())
-        await self.channel.send(embed=embed, view=MyView(self.bot))
+        await channel.send(embed=embed, view=MyView(self.bot))
         await ctx.respond("TicketMenü wurde gesendet!", ephemeral=True)
 
     #Slash Command to add Members to the Ticket
