@@ -21,20 +21,20 @@ info("bot setup")
 
 properties = {
     'willkommensnachrichten': True,
-    'punishsystem-logchat': 1180536179754541150,
-    'server-guild-id': 1180536174633304184,
+    'punishsystem-logchat': 1121041295515861002, 
+    'server-guild-id': 876068862754447391,  
     'server-guild-number': 1180536176139059322,
-    'welcome-channel': 1180536176139059327,
-    'Entbannung-channel': 1180536176663339040,
+    'welcome-channel': 895656850652016711,
+    'Entbannung-channel': 1217196767703994468,
     'banned-users': [], 
-    'ticket_channel_id': 1180536180958314609,
-    'log_channel_id': 1180536181725864022, 
-    'ticket_kategory_1': 1180536181725864021,
-    'ticket_kategory_2': 1180536181725864019,
-    'team_role_id_1': 1180536174880768025,
-    'team_role_id_2': 1180536174880768025,
-    'guildmember': 1180536176139059322,
-    'mod_blacklist_channels': [1180536179247038577]
+    'ticket_channel_id': 1130525375345209375,
+    'log_channel_id': 895557329792147476, 
+    'ticket_kategory_1': 1156536115801636895,
+    'ticket_kategory_2': 1217204483873046528,
+    'team_role_id_1': 1217193751944888350,
+    'team_role_id_2': 1217193751944888350,
+    'guildmember': 1121041295515861002,
+    'mod_blacklist_channels': [1134442888202297374]
      
 }
 

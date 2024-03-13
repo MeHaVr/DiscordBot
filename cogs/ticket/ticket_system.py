@@ -10,6 +10,7 @@ from discord.commands import slash_command
 from discord.commands import Option
 from discord.ext import commands
 from cogs.setup import properties, bot, save_properties, info, error
+from icecream import ic
 
 
 GUILD_ID = properties["server-guild-id"] #Your Server ID aka Guild ID 
@@ -58,7 +59,7 @@ class MyView(discord.ui.View):
 
     @discord.ui.select(
         custom_id="support",
-        placeholder="Choose a Ticket option",
+        placeholder="Wählen Sie eine Ticket-Option",
         options=[
             discord.SelectOption(
                 label="Support und Problem",  #Name of the 1 Select Menu Option
@@ -74,8 +75,11 @@ class MyView(discord.ui.View):
             )
         ]
     )
-    async def callback(self, select, interaction):
+    async def callback(self, select, interaction):\
+        
         if "support1" in interaction.data['values']: 
+
+
             if interaction.channel.id == TICKET_CHANNEL:
                 guild = self.bot.get_guild(GUILD_ID)
                 member_id = interaction.user.id
@@ -90,7 +94,6 @@ class MyView(discord.ui.View):
                     category = self.bot.get_channel(CATEGORY_ID1)
                     ticket_channel = await guild.create_text_channel(f"ticket-{interaction.user.name}", category=category,
                                                                     topic=f"{interaction.user.id}")
-
                     await ticket_channel.set_permissions(guild.get_role(TEAM_ROLE1), send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the Staff Team
                                                         embed_links=True, attach_files=True, read_message_history=True,
                                                         external_emojis=True)
@@ -116,6 +119,7 @@ class MyView(discord.ui.View):
                     embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())
                     await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
         if "support2" in interaction.data['values']:
+            print("support2")
             if interaction.channel.id == TICKET_CHANNEL:
                 guild = self.bot.get_guild(GUILD_ID)
                 member_id = interaction.user.id
