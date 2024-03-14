@@ -86,7 +86,9 @@ class MyView(discord.ui.View):
                 member_name = interaction.user.name
                 cur.execute("SELECT discord_id FROM ticket WHERE discord_id=?", (member_id,)) #Check if the User already has a Ticket open
                 existing_ticket = cur.fetchone()
+                print("sup1")
                 if existing_ticket is None:
+                    print("after if")
                     cur.execute("INSERT INTO ticket (discord_name, discord_id) VALUES (?, ?)", (member_name, member_id)) #If the User doesn't have a Ticket open it will insert the User into the Database and create a Ticket
                     conn.commit()
                     cur.execute("SELECT id FROM ticket WHERE discord_id=?", (member_id,)) #Get the Ticket Number from the Database
@@ -94,24 +96,33 @@ class MyView(discord.ui.View):
                     category = self.bot.get_channel(CATEGORY_ID1)
                     ticket_channel = await guild.create_text_channel(f"ticket-{interaction.user.name}", category=category,
                                                                     topic=f"{interaction.user.id}")
-                    await ticket_channel.set_permissions(guild.get_role(TEAM_ROLE1), send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the Staff Team
-                                                        embed_links=True, attach_files=True, read_message_history=True,
-                                                        external_emojis=True)
-                    await ticket_channel.set_permissions(interaction.user, send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the User
-                                                        embed_links=True, attach_files=True, read_message_history=True,
-                                                        external_emojis=True)
-                    await ticket_channel.set_permissions(guild.default_role, send_messages=False, read_messages=False, view_channel=False) #Set the Permissions for the @everyone role
-                    embed = discord.Embed(description=f'Willkommen {interaction.user.mention},\n'
-                                                       'schildern Sie Ihr Problem und unser Support wird Ihnen bald helfen.',   #Ticket Welcome message
-                                                    color=discord.colour.Color.blue())
-                    await ticket_channel.send(embed=embed, view=CloseButton(bot=self.bot))
+                    print("bevor role if")
+                    roles = await guild.fetch_roles() 
+                    for role in roles:
+                        if role.id == TEAM_ROLE1:
+                            print("after role if")
 
-                    embed = discord.Embed(description=f'📬 Ticket wurde erstellt! Siehe hier --> {ticket_channel.mention}',  
-                                            color=discord.colour.Color.green())
-                    await interaction.response.send_message(embed=embed, ephemeral=True)
-                    await asyncio.sleep(1)
-                    embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())  
-                    await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
+                            
+                            await ticket_channel.set_permissions(role, send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the Staff Team
+                                                          embed_links=True, attach_files=True, read_message_history=True,
+                                                          external_emojis=True)
+
+                            await ticket_channel.set_permissions(interaction.user, send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the User
+                                                                embed_links=True, attach_files=True, read_message_history=True,
+                                                                external_emojis=True)
+
+                            await ticket_channel.set_permissions(guild.default_role, send_messages=False, read_messages=False, view_channel=False) #Set the Permissions for the @everyone role
+                            embed = discord.Embed(description=f'Willkommen {interaction.user.mention},  || <@&1147845185405984890> || \n'
+                                                               'schildern Sie Ihr Problem und unser Support wird Ihnen bald helfen.',   #Ticket Welcome message
+                                                            color=discord.colour.Color.blue())
+                            await ticket_channel.send(embed=embed, view=CloseButton(bot=self.bot))
+
+                            embed = discord.Embed(description=f'📬 Ticket wurde erstellt! Siehe hier --> {ticket_channel.mention}',  
+                                                    color=discord.colour.Color.green())
+                            await interaction.response.send_message(embed=embed, ephemeral=True)
+                            await asyncio.sleep(1)
+                            embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())  
+                            await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
                 else:
                     embed = discord.Embed(title=f"Sie haben bereits ein Ticket geöffnet", color=0xff0000)
                     await interaction.response.send_message(embed=embed, ephemeral=True) #This will tell the User that he already has a Ticket open
@@ -121,6 +132,7 @@ class MyView(discord.ui.View):
         if "support2" in interaction.data['values']:
             print("support2")
             if interaction.channel.id == TICKET_CHANNEL:
+                print("interacton2 TICKET_CHANNEL")
                 guild = self.bot.get_guild(GUILD_ID)
                 member_id = interaction.user.id
                 member_name = interaction.user.name
@@ -134,25 +146,29 @@ class MyView(discord.ui.View):
                     category = self.bot.get_channel(CATEGORY_ID2)
                     ticket_channel = await guild.create_text_channel(f"Ticket-{interaction.user.name}", category=category,
                                                                     topic=f"{interaction.user.id}")
+                    
+                    roles = await guild.fetch_roles() 
+                    for role in roles:
+                        if role.id == TEAM_ROLE2:
 
-                    await ticket_channel.set_permissions(guild.get_role(TEAM_ROLE2), send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the Staff Team
-                                                        embed_links=True, attach_files=True, read_message_history=True,
-                                                        external_emojis=True)
-                    await ticket_channel.set_permissions(interaction.user, send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the User
-                                                        embed_links=True, attach_files=True, read_message_history=True,
-                                                        external_emojis=True)
-                    await ticket_channel.set_permissions(guild.default_role, send_messages=False, read_messages=False, view_channel=False) #Set the Permissions for the @everyone role
-                    embed = discord.Embed(description=f'Willkommen {interaction.user.mention},\n' #Ticket Welcome message
-                                                       'Wie kann ich Ihnen helfen?',
-                                                    color=discord.colour.Color.blue())
-                    await ticket_channel.send(embed=embed, view=CloseButton(bot=self.bot))
+                            await ticket_channel.set_permissions(role, send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the Staff Team
+                                                                embed_links=True, attach_files=True, read_message_history=True,
+                                                                external_emojis=True)
+                            await ticket_channel.set_permissions(interaction.user, send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the User
+                                                                embed_links=True, attach_files=True, read_message_history=True,
+                                                                external_emojis=True)
+                            await ticket_channel.set_permissions(guild.default_role, send_messages=False, read_messages=False, view_channel=False) #Set the Permissions for the @everyone role
+                            embed = discord.Embed(description=f'Willkommen {interaction.user.mention},  || <@&1147845185405984890> || \n ' #Ticket Welcome message
+                                                               'Wie kann ich Ihnen helfen?',
+                                                            color=discord.colour.Color.blue())
+                            await ticket_channel.send(embed=embed, view=CloseButton(bot=self.bot))
 
-                    embed = discord.Embed(description=f'📬 Ticket wurde erstellt! Siehe hier --> {ticket_channel.mention}',
-                                            color=discord.colour.Color.green())
-                    await interaction.response.send_message(embed=embed, ephemeral=True)
-                    await asyncio.sleep(1)
-                    embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())
-                    await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
+                            embed = discord.Embed(description=f'📬 Ticket wurde erstellt! Siehe hier --> {ticket_channel.mention}',
+                                                    color=discord.colour.Color.green())
+                            await interaction.response.send_message(embed=embed, ephemeral=True)
+                            await asyncio.sleep(1)
+                            embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())
+                            await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
                 else:
                     embed = discord.Embed(title=f"Sie haben bereits ein Ticket geöffnet", color=0xff0000)
                     await interaction.response.send_message(embed=embed, ephemeral=True) #This will tell the User that he already has a Ticket open
@@ -227,23 +243,23 @@ class TicketOptions(discord.ui.View):
         transcript_file = discord.File(
             io.BytesIO(transcript.encode()),
             filename=f"transcript-{interaction.channel.name}.html")
-        transcript_file2 = discord.File(
-            io.BytesIO(transcript.encode()),
-            filename=f"transcript-{interaction.channel.name}.html")
+
         
         ticket_creator = guild.get_member(ticket_creator)
         embed = discord.Embed(description=f'Das Ticket wird in 5 Sekunden ausgeliefert.', color=0xff0000)
-        msg = await ticket_creator.send(file=transcript_file)
+        msg = await channel.send(file=transcript_file)
         link = await chat_exporter.link(msg)
         transcript_info = discord.Embed(title=f"Ticket-Löschung | {interaction.channel.name}", description=f"Ticket von: {ticket_creator.mention}\nTicket Name: {interaction.channel.name} \n Geschlossen von: {interaction.user.mention} \n Hier ist der Link zum [Transkript]({link})", color=discord.colour.Color.blue())
 
         await interaction.response.send_message(embed=embed)
-        #checks if user has dms disabled
+        #checks if user has dms disabl ed
         try:
             await ticket_creator.send(embed=transcript_info)
 
         except:
             transcript_info.add_field(name="Fehler", value="Konnte das Transcript nicht an den User senden, da er seine DMs deaktiviert hat!", inline=True)
-        await channel.send(embed=transcript_info, file=transcript_file2)
+        await channel.send(embed=transcript_info)
         await asyncio.sleep(3)
         await interaction.channel.delete(reason="Ticket wurde gelöscht!")
+
+        await msg.delete()

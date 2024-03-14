@@ -53,8 +53,13 @@ class Ticket_Command(commands.Cog):
     @ticket.command(name="ticket")
     @default_permissions(administrator=True)
     async def send(self, ctx, channel: Option(discord.TextChannel, "welchen channel rein schicken wilst")):
+
+        properties['ticket_channel_id'] = channel.id
+        save_properties()
         
-        embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())
+        embed = discord.Embed(title="Support-Tickets", description='''Hast du eine Frage oder brauchst du Hilfe auf Lythia.de? Erstelle einfach ein Ticket, indem du auf den drop down Button klickst.
+Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.
+Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())
         await channel.send(embed=embed, view=MyView(self.bot))
         await ctx.respond("TicketMenü wurde gesendet!", ephemeral=True)
 
