@@ -2,8 +2,20 @@ from discord import Bot, Intents
 import time
 import yaml
 from icecream import ic
+import os
+from dotenv import load_dotenv
 
-server_guild = 876068862754447391
+
+load_dotenv()
+
+if os.getenv("TEST_MODE") == "True":
+    #Test Server
+    server_guild = 1180536174633304184
+else:    
+    #Main Server
+    server_guild = 876068862754447391
+ic(os.getenv("TEST_MODE"))
+ic(server_guild)
 
 intents = Intents.default()
 intents.message_content = True

@@ -8,3 +8,4 @@ tornado
 jinja2
 chat_exporter
 openai
+dotenv

@@ -4,6 +4,7 @@ import os
 import asyncio
 import datetime
 from easy_pil import Editor, load_image_async, Font
+from dotenv import load_dotenv
 
 from cogs.setup import bot, info
 from cogs.ping import Ping
@@ -20,7 +21,7 @@ from cogs.ankundigung import Ankundigun
 # from cogs.achievements import Achievements
 # from cogs.voicechannel import voicechannel
 
-key = sys.argv[1]
+load_dotenv()
 
 # asyncio.run(bot.add_cog(Welcome()))
 #asyncio.run(bot.add_cog(Ping()))
@@ -58,7 +59,7 @@ async def on_ready():
     #print("done")
 
 web_task = asyncio.ensure_future(webserver_main())
-bot_task = asyncio.ensure_future(bot.run(key))
+bot_task = asyncio.ensure_future(bot.run(os.getenv("DISCORD_TOKEN")))
 
 loop = asyncio.get_event_loop()
 loop.run_forever()

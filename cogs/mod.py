@@ -34,7 +34,7 @@ class Mod(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
 
-        log_channel = bot.get_channel(properties['punishsystem-logchat'])
+        log_channel = bot.fetch_channel(properties['punishsystem-logchat'])
         black_list = properties['mod_blacklist_channels']
 
         if message.author.bot:
