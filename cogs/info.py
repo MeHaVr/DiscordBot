@@ -42,18 +42,18 @@ class Info(commands.Cog):
 
         embed = discord.Embed(title="Lythia.de Reaction Roles",
                       description="In diesem Interface kannst du dir Rollen aussuchen, die mit den Informationen verbunden sind. Anstatt das wir everyone pingen, kannst du dir selber aussuchen zu welchen Themen du einen Ping bekommen willst. \n",
-                      timestamp=datetime.now())
+                      timestamp=datetime.now(), colour=0x054dc9)
 
-        embed.add_field(name="Um keine Informationen für die Bedrock Version zuverpassen | <:bedrock:1191107957929283594>",
+        embed.add_field(name="Um keine Informationen für die Bedrock Version zuverpassen",
                 value="<@&1135246037506854932>",
                 inline=True)
-        embed.add_field(name="Um keine Wichtigen Server Informationen zu verpassen | <:ankundinung:1191107952501850212>",
+        embed.add_field(name="Um keine Wichtigen Server Informationen zu verpassen",
                 value="<@&1135245228090085476>",
                 inline=False)
-        embed.add_field(name="Um keine Informationen für die Java Version zuverpassen | <:java:1191107956578713620>",
+        embed.add_field(name="Um keine Informationen für die Java Version zuverpassen ",
                 value="<@&1135245863816528004>",
                 inline=True)
-        embed.add_field(name="Um keine Events zuverpassen | <:event:1191107953743368333>",
+        embed.add_field(name="Um keine Events zuverpassen",
                 value="<@&1135243755629314049>",
                 inline=False)
 
@@ -72,7 +72,7 @@ def setup(bot):
 
 class Rollen(discord.ui.View):
     
-    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="<:bedrock:1191107957929283594>", label="Bedrock | Informationen")
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Bedrock | Informationen")
     async def button_callback(self, button, interaction):
 
         found = False
@@ -104,7 +104,7 @@ class Rollen(discord.ui.View):
             embed.set_footer(text="Lythia.de")
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
-    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="<:ankundinung:1191107952501850212>", label="Server | Informationen")
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Server | Informationen")
     async def button_callback_2(self, button, interaction):
 
         found = False
@@ -137,7 +137,7 @@ class Rollen(discord.ui.View):
             await interaction.user.add_roles(bed_role)
             
 
-    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="<:event:1191107953743368333>", label="Event | Informationen")
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Event | Informationen")
     async def button_callback_3(self, button, interaction):
 
         found = False
@@ -149,6 +149,7 @@ class Rollen(discord.ui.View):
 
 
         if found:
+            await interaction.user.remove_roles(bed_role)
             embed = discord.Embed(title="Die Rolle `Event | Informationen` wurde entfernt",
             description="Sie können die Rolle wieder bekommen, klicke einfach auf `Event | Informationen` Knopf.",
             colour=0xf50000,
@@ -170,7 +171,7 @@ class Rollen(discord.ui.View):
             
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
-    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="<:java:1191107956578713620>", label="Java | Informationen")
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Java | Informationen")
     async def button_callback_4(self, button, interaction):
 
         found = False

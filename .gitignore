@@ -1,4 +1,5 @@
 *.pyc
-
+.env
 properties.yml
 user.db
+.vscode

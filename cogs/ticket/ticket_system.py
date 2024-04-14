@@ -86,9 +86,8 @@ class MyView(discord.ui.View):
                 member_name = interaction.user.name
                 cur.execute("SELECT discord_id FROM ticket WHERE discord_id=?", (member_id,)) #Check if the User already has a Ticket open
                 existing_ticket = cur.fetchone()
-                print("sup1")
                 if existing_ticket is None:
-                    print("after if")
+
                     cur.execute("INSERT INTO ticket (discord_name, discord_id) VALUES (?, ?)", (member_name, member_id)) #If the User doesn't have a Ticket open it will insert the User into the Database and create a Ticket
                     conn.commit()
                     cur.execute("SELECT id FROM ticket WHERE discord_id=?", (member_id,)) #Get the Ticket Number from the Database
@@ -96,11 +95,11 @@ class MyView(discord.ui.View):
                     category = self.bot.get_channel(CATEGORY_ID1)
                     ticket_channel = await guild.create_text_channel(f"ticket-{interaction.user.name}", category=category,
                                                                     topic=f"{interaction.user.id}")
-                    print("bevor role if")
+
                     roles = await guild.fetch_roles() 
                     for role in roles:
                         if role.id == TEAM_ROLE1:
-                            print("after role if")
+
 
                             
                             await ticket_channel.set_permissions(role, send_messages=True, read_messages=True, add_reactions=False, #Set the Permissions for the Staff Team
@@ -130,9 +129,9 @@ class MyView(discord.ui.View):
                     embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())
                     await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
         if "support2" in interaction.data['values']:
-            print("support2")
+
             if interaction.channel.id == TICKET_CHANNEL:
-                print("interacton2 TICKET_CHANNEL")
+
                 guild = self.bot.get_guild(GUILD_ID)
                 member_id = interaction.user.id
                 member_name = interaction.user.name
