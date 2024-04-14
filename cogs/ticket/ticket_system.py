@@ -120,13 +120,17 @@ class MyView(discord.ui.View):
                                                     color=discord.colour.Color.green())
                             await interaction.response.send_message(embed=embed, ephemeral=True)
                             await asyncio.sleep(1)
-                            embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())  
+                            embed = discord.Embed(title="Support-Tickets", description='''Hast du eine Frage oder brauchst du Hilfe auf Lythia.de? Erstelle einfach ein Ticket, indem du auf den drop down Button klickst.
+                            Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.
+                            Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())
                             await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
                 else:
                     embed = discord.Embed(title=f"Sie haben bereits ein Ticket geöffnet", color=0xff0000)
                     await interaction.response.send_message(embed=embed, ephemeral=True) #This will tell the User that he already has a Ticket open
                     await asyncio.sleep(1)
-                    embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())
+                    embed = discord.Embed(title="Support-Tickets", description='''Hast du eine Frage oder brauchst du Hilfe auf Lythia.de? Erstelle einfach ein Ticket, indem du auf den drop down Button klickst.
+                    Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.
+                    Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())
                     await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
         if "support2" in interaction.data['values']:
 
@@ -166,13 +170,17 @@ class MyView(discord.ui.View):
                                                     color=discord.colour.Color.green())
                             await interaction.response.send_message(embed=embed, ephemeral=True)
                             await asyncio.sleep(1)
-                            embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())
+                            embed = discord.Embed(title="Support-Tickets", description='''Hast du eine Frage oder brauchst du Hilfe auf Lythia.de? Erstelle einfach ein Ticket, indem du auf den drop down Button klickst.
+                            Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.
+                            Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())
                             await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
                 else:
                     embed = discord.Embed(title=f"Sie haben bereits ein Ticket geöffnet", color=0xff0000)
                     await interaction.response.send_message(embed=embed, ephemeral=True) #This will tell the User that he already has a Ticket open
                     await asyncio.sleep(1)
-                    embed = discord.Embed(title="Support-Tickets", color=discord.colour.Color.blue())
+                    embed = discord.Embed(title="Support-Tickets", description='''Hast du eine Frage oder brauchst du Hilfe auf Lythia.de? Erstelle einfach ein Ticket, indem du auf den drop down Button klickst.
+                    Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.
+                    Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())
                     await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
         return
 
