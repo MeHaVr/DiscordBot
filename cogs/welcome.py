@@ -107,7 +107,7 @@ class Welcome(commands.Cog):
         guildmember = await bot.fetch_channel(int(properties['server-guild-number'])) 
         ic(member) 
     
-        await guildmember.edit(name = f'🚶〣╠- Spieler • {guild.approximate_member_count}')
+        await guildmember.edit(name = f'📈｜Spieler • {guild.approximate_member_count}')
 
 
     @willkommen.command()
