@@ -57,11 +57,16 @@ class Ticket_Command(commands.Cog):
         properties['ticket_channel_id'] = channel.id
         save_properties()
         
-        embed = discord.Embed(title="Support-Tickets", description='''Hast du eine Frage oder brauchst du Hilfe auf Lythia.de? Erstelle einfach ein Ticket, indem du auf den drop down Button klickst.
-Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.
+        embed = discord.Embed(title="Tickets System", description='''
+        \n Hast du eine Frage oder brauchst du Hilfe auf **Lythia.de**?\n
+        
+        **Erstelle einfach ein Ticket, indem du auf den Drop down Button klickst.**\n
+Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.\n
 Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())
+        embed.set_image(url="https://media.discordapp.net/attachments/1215339742246211588/1229489333996748872/ticket.png?ex=662fde2c&is=661d692c&hm=ca97f4b7981f5faf228fced968be5f2eeac40a2d563093ba588b82b79a47582a&=&format=webp&quality=lossless&width=1193&height=671")  # Hier kannst du deine Logourl einfügen
+        embed.set_footer(text="Lythia | Ticket System Feature", icon_url="https://media.discordapp.net/attachments/1215339742246211588/1229489455304413274/server-icon2.png?ex=662fde48&is=661d6948&hm=f2169ad02e48599db0e60ba33e51cb15119b0e5b065862dc1a55dbad9e8b043c&=&format=webp&quality=lossless")
         await channel.send(embed=embed, view=MyView(self.bot))
-        await ctx.respond("TicketMenü wurde gesendet!", ephemeral=True)
+        await ctx.respond("Dein Ticket wurde gesendet!", ephemeral=True)
 
     #Slash Command to add Members to the Ticket
     @ticket.command(name="hinzufügen", description="Ein Mitglied zum Ticket hinzufügen")
@@ -70,7 +75,7 @@ Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft we
             await ctx.channel.set_permissions(member, send_messages=True, read_messages=True, add_reactions=False,
                                                 embed_links=True, attach_files=True, read_message_history=True,
                                                 external_emojis=True)
-            self.embed = discord.Embed(description=f'Hinzugefügt {member.mention} zu diesem Ticket <#{ctx.channel.id}>! \n Verwenden Sie /entfernen, um einen Benutzer zu entfernen.', color=discord.colour.Color.green())
+            self.embed = discord.Embed(description=f'Es wurde {member.mention} zu diesem Ticket (<#{ctx.channel.id}>) hinzugefügt! \n Verwenden Sie /entfernen, um einen Benutzer zu entfernen.', color=discord.colour.Color.green())
             await ctx.respond(embed=self.embed)
         else:
             self.embed = discord.Embed(description=f'Sie können diesen Befehl nur in einem Ticket verwenden!', color=discord.colour.Color.red())
@@ -118,8 +123,8 @@ Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft we
             filename=f"transcript-{ctx.channel.name}.html")
         
         ticket_creator = guild.get_member(ticket_creator)
-        embed = discord.Embed(description=f'Das Ticket wird in 5 Sekunden ausgeliefert.', color=0xff0000)
-        transcript_info = discord.Embed(title=f"Ticket-Löschung | {ctx.channel.name}", description=f"Ticket von: {ticket_creator.mention}\nName der Fahrkarte: {ctx.channel.name} \n Geschlossen von: {ctx.author.mention}", color=discord.colour.Color.blue())
+        embed = discord.Embed(description=f'Das Ticket wird in **5** Sekunden gelöscht!', color=0xff0000)
+        transcript_info = discord.Embed(title=f"Ticket-Löschung | {ctx.channel.name}", description=f"Ticket von: {ticket_creator.mention}\nChannel: {ctx.channel.name} \n Geschlossen von: {ctx.author.mention}", color=discord.colour.Color.blue())
 
         await ctx.reply(embed=embed)
         #Checks if the user has his DMs enabled/disabled
