@@ -3,3 +3,5 @@
 .vscode
 properties.yml
 user.db
+*clear.txt
+blacklist_streaks.yml

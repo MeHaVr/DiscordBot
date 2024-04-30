@@ -40,7 +40,7 @@ if os.getenv("TEST_MODE") == "True":
         'Entbannung-channel': 1180536177141493915,
         'banned-users': [], 
         'ticket_channel_id': 1180536180958314609,
-        'log_channel_id': 1180536179247038578, 
+        'log_channel_id': 1180536179247038579, 
         'ticket_kategory_1': 1180536181725864019,
         'ticket_kategory_2': 1180536181725864021,
         'team_role_id_1': 1180536174880768025,
