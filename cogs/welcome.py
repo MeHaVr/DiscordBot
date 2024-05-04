@@ -64,7 +64,7 @@ class Welcome(commands.Cog):
 
             #Auto Rolle
 
-            role = discord.utils.get(member.guild.roles, name='Member')
+            role = discord.utils.get(member.guild.roles, id="876096833225621505")
             await member.add_roles(role)
 
             #send Dm mit bild
