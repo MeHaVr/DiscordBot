@@ -39,7 +39,9 @@ class Info(commands.Cog):
 
 
     @info.command()
-    async def spenden(self, ctx: discord.ApplicationContext, channel: Option(discord.TextChannel, "welchen channel rein schicken wilst")):
+    async def spenden(self, ctx: discord.ApplicationContext, channel: Option(str, "ID")):
+
+        channel_id = await bot.fetch_channel(channel) 
         
         embed = discord.Embed(title="Spenden",
                       description="**Du möchtest unseren Minecraft Server Unterstützen?**\nUnser Minecraft Server finanziert sich über eure Spenden, möchtest du ganz gerne eine freiwillige Spende für Lythia.de da lassen, klicke auf den unteren Link:\nhttps://patreon.com/user?u=33740275\n\n**Wieso Finanziert sich der Server nur über Spenden?**\n\nUnterstütze 'Minecraft Lythia.de' mit deinen Spenden! Deine Großzügigkeit ermöglicht spannende Updates, neue Funktionen und eine noch bessere Spielerfahrung für alle.\"",
@@ -55,7 +57,7 @@ class Info(commands.Cog):
         view = discord.ui.View()
         view.add_item(Spenden)
 
-        await channel.send(embed=embed, view=view)
+        await channel_id.send(embed=embed, view=view)
         await ctx.respond("jaa es hat geklapt")
         
 

@@ -19,7 +19,7 @@ class Ankundigun(commands.Cog):
     async def ankundigung(
         self,
         ctx: discord.ApplicationContext,
-        channel: Option(discord.TextChannel, "Kannal"),
+        channel: Option(str, "Gib ddie id vom kannal ein"),
         title: Option(str, "Gib bitte die Überschrift der Ankündigung ein."),
         text: Option(str, "Gib bitte den Text der Ankündigung ein."),
         everyone: Option(bool, "Ja oder Nein"),
@@ -27,6 +27,7 @@ class Ankundigun(commands.Cog):
        
     ):
 
+        channel_id = await bot.fetch_channel(channel) 
         guild = await bot.fetch_guild(properties['server-guild-id'])
 
         highest_role = ctx.author.top_role.mention
@@ -43,7 +44,7 @@ class Ankundigun(commands.Cog):
         # Nachricht in den spezifischen Kanal senden
 
         else:
-            await channel.send(content=announcement)
+            await channel_id.send(content=announcement)
 
         await ctx.respond("Es wurde erfolgreich gesendet")
 
