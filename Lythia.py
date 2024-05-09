@@ -17,6 +17,7 @@ from cogs.mods.mod import Mod
 from cogs.mods.blacklist import BlackList
 from webserver.webserver import webserver_main 
 from cogs.ankundigung import Ankundigun
+from cogs.supportchannel import SupportChannel
 
 
 # from cogs.achievements import Achievements
@@ -28,7 +29,8 @@ load_dotenv()
 #asyncio.run(bot.add_cog(Ping()))
 bot.add_cog(Ping())
 bot.add_cog(Welcome())
-bot.add_cog(BlackList())
+bot.add_cog(SupportChannel())
+#bot.add_cog(BlackList())
 #bot.add_cog(Punishsystem())
 bot.add_cog(Info())
 bot.add_cog(Ticket_Command(bot))

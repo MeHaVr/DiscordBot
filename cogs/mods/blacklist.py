@@ -50,11 +50,11 @@ class BlackList(commands.Cog):
 
 
         if(self.blacklist.match(message.content)):
-            print(f"match: deleting message: {message.content}")
+            #print(f"match: deleting message: {message.content}")
             try:
                 await message.delete(reason="Ne das geht aber gar nicht | powered by Manuel.exe")                    
             except discord.errors.Forbidden:
-                print("jaa es geht")
+                #print("jaa es geht")
                 await log_channel.send("<@&1180536175300194326> Da ist wohl bei Blacklist.py beim Loschen der Nachricht fehlgeschlagen.")
             
             
@@ -67,7 +67,7 @@ class BlackList(commands.Cog):
             self.save_streaks()
 
             if self.blacklist_streaks[message.author.name] > 3:
-                print(f"{message.author.name}: mehr als 3 streaks!")
+               print(f"{message.author.name}: mehr als 3 streaks!")
             else:
                 print(f"{message.author.name}: {self.blacklist_streaks[message.author.name]} streak(s)!")
             

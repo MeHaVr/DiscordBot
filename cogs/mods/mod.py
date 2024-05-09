@@ -34,11 +34,15 @@ class Mod(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
 
+        if not message.guild:
+            return
+        
+        if message.author.bot:
+            return
+
         log_channel = await bot.fetch_channel(properties['punishsystem-logchat'])
         black_list = properties['mod_blacklist_channels']
 
-        if message.author.bot:
-            return
 
         for channel_id in black_list:
             if channel_id == message.channel.id:

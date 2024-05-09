@@ -40,13 +40,14 @@ if os.getenv("TEST_MODE") == "True":
         'Entbannung-channel': 1180536177141493915,
         'banned-users': [], 
         'ticket_channel_id': 1180536180958314609,
-        'log_channel_id': 1180536179247038579, 
-        'ticket_kategory_1': 1180536181725864019,
-        'ticket_kategory_2': 1180536181725864021,
+        'log_channel_id': 1180536179247038578, 
+        'ticket_kategory_1': 1180536174880768025,
+        'ticket_kategory_2': 1180536174880768025,
         'team_role_id_1': 1180536174880768025,
         'team_role_id_2': 1180536174880768025,
         'guildmember': 1180536176139059322,
-        'mod_blacklist_channels': [1180536179247038579]
+        'mod_blacklist_channels': [1180536179247038579],
+        'support_channel': 1180536176139059323
     }
 else:
     properties = {
@@ -64,8 +65,8 @@ else:
         'team_role_id_1': 1217193751944888350,
         'team_role_id_2': 1217193751944888350,
         'guildmember': 1121041295515861002,
-        'mod_blacklist_channels': [1134442888202297374]
-
+        'mod_blacklist_channels': [1134442888202297374],
+        'support_channel': 1238083092837564446
     }
 
 def save_properties():
