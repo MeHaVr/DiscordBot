@@ -66,6 +66,7 @@ else:
         'team_role_id_2': 1217193751944888350,
         'guildmember': 1121041295515861002,
         'mod_blacklist_channels': [1134442888202297374],
+        'support_role': 1147845185405984890,
         'support_channel': 1238083092837564446
     }
 

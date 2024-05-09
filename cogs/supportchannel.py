@@ -15,7 +15,7 @@ class SupportChannel(commands.Cog):
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
 
-        role_id = properties['team_role_id_1']
+        role_id = properties['support_role']
         channel_id = properties['support_channel']
         
         if member.bot:
