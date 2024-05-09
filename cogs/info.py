@@ -37,6 +37,30 @@ class Info(commands.Cog):
         await channel.send(embed=embed, view=view)
         await channel.send("<:E_:1154491760274313367>")
 
+
+    @info.command()
+    async def spenden(self, ctx: discord.ApplicationContext, channel: Option(discord.TextChannel, "welchen channel rein schicken wilst")):
+        
+        embed = discord.Embed(title="Spenden",
+                      description="**Du möchtest unseren Minecraft Server Unterstützen?**\nUnser Minecraft Server finanziert sich über eure Spenden, möchtest du ganz gerne eine freiwillige Spende für Lythia.de da lassen, klicke auf den unteren Link:\nhttps://patreon.com/user?u=33740275\n\n**Wieso Finanziert sich der Server nur über Spenden?**\n\nUnterstütze 'Minecraft Lythia.de' mit deinen Spenden! Deine Großzügigkeit ermöglicht spannende Updates, neue Funktionen und eine noch bessere Spielerfahrung für alle.\"",
+                      colour=0x25f400,
+                      timestamp=datetime.now())
+
+        embed.set_author(name=f"{ctx.guild.name}",
+                                         icon_url=f"{ctx.guild.icon}")
+        embed.set_footer(text=f"{ctx.guild.name}")
+        
+        Spenden = discord.ui.Button(label="Spenden", emoji="💸", url="https://patreon.com/user?u=33740275")
+
+        view = discord.ui.View()
+        view.add_item(Spenden)
+
+        await channel.send(embed=embed, view=view)
+        await ctx.respond("jaa es hat geklapt")
+        
+
+
+
     @info.command()
     async def rollen(self, ctx: discord.ApplicationContext, channel: Option(discord.TextChannel, "welchen channel rein schicken wilst")):
 
@@ -65,10 +89,6 @@ class Info(commands.Cog):
         await ctx.respond("Die Rollen wurde gesendet")
     
 
-
-
-def setup(bot):
-    bot.add_cog(Button(bot))
 
 class Rollen(discord.ui.View):
     

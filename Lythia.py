@@ -25,8 +25,7 @@ from cogs.supportchannel import SupportChannel
 
 load_dotenv()
 
-# asyncio.run(bot.add_cog(Welcome()))
-#asyncio.run(bot.add_cog(Ping()))
+
 bot.add_cog(Ping())
 bot.add_cog(Welcome())
 bot.add_cog(SupportChannel())
@@ -38,8 +37,7 @@ bot.add_cog(Ticket_System(bot))
 bot.add_cog(Mod())
 bot.add_cog(Ankundigun())
 
-# asyncio.run(bot.add_cog(Achievements()))
-# asyncio.run(bot.add_cog(voicechannel()))
+
 
 @bot.event
 async def on_ready():
