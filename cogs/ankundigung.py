@@ -43,13 +43,10 @@ class Ankundigun(commands.Cog):
 
         # Nachricht in den spezifischen Kanal senden
 
-        else:
+        try:
             await channel_id.send(content=announcement)
-
+        except: 
+            await ctx.respond("Da ist etwas kommisches passsiert")
+            return
+        
         await ctx.respond("Es wurde erfolgreich gesendet")
-
-
-
-
-
-
