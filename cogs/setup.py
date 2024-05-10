@@ -47,7 +47,8 @@ if os.getenv("TEST_MODE") == "True":
         'team_role_id_2': 1180536174880768025,
         'guildmember': 1180536176139059322,
         'mod_blacklist_channels': [1180536179247038579],
-        'support_channel': 1180536176139059323
+        'support_channel': 1180536176139059323,
+        'ServerInformationenId': 1180536174654267414
     }
 else:
     properties = {
@@ -67,7 +68,8 @@ else:
         'guildmember': 1121041295515861002,
         'mod_blacklist_channels': [1134442888202297374],
         'support_role': 1147845185405984890,
-        'support_channel': 1238083092837564446
+        'support_channel': 1238083092837564446,
+        'ServerInformationenId': 1135245228090085476
     }
 
 def save_properties():

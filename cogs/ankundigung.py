@@ -31,7 +31,7 @@ class Ankundigun(commands.Cog):
         guild = await bot.fetch_guild(properties['server-guild-id'])
 
         highest_role = ctx.author.top_role.mention
-        serverrole = guild.get_role(1180536174654267414)
+        serverrole = guild.get_role(properties['ServerInformationenId'])
 
         if everyone == True:
             announcement = f"# {title}\n> @everyone - {serverrole.mention}\n\n{text}\n\nMit freundlichen Grüßen,\n{highest_role} - {ctx.author.mention}"
