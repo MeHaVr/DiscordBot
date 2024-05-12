@@ -76,7 +76,7 @@ class VerificationHandler(tornado.web.RequestHandler):
         #member = await discord_bot["bot"].fetch_user(user_id)
         guild = await discord_bot["bot"].fetch_guild(properties["server-guild-id"])
         member = await guild.fetch_member(user_id)
-        role = discord.utils.get(guild.roles, name="Epic")
+        role = discord.utils.get(guild.roles, name="» Verifiziert")
             
                 
         if nonce and user_id and check_noncediscordid(user_id, nonce):

@@ -31,13 +31,13 @@ bot.add_cog(Ping())
 bot.add_cog(Welcome())
 bot.add_cog(SupportChannel())
 bot.add_cog(Verification())
-#bot.add_cog(BlackList())
+bot.add_cog(BlackList())
 #bot.add_cog(Punishsystem())
 bot.add_cog(Info())
 bot.add_cog(Ticket_Command(bot))
 bot.add_cog(Ticket_System(bot))
-#bot.add_cog(Mod())
-#bot.add_cog(Ankundigung())
+bot.add_cog(Mod())
+bot.add_cog(Ankundigung())
 
 @bot.event
 async def on_ready():
