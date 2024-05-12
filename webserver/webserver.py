@@ -101,7 +101,7 @@ class VerificationHandler(tornado.web.RequestHandler):
     
 def make_app():
     return tornado.web.Application([
-        (r"/resources/(.*)", tornado.web.StaticFileHandler, {"path": "./webserver/verification/resources"}),
+        (r"/verifizierung/resources/(.*)", tornado.web.StaticFileHandler, {"path": "./webserver/verification/resources"}),
         ("/verifizierung", VerificationHandler),
         (r"/", MainHandler),
     ])
