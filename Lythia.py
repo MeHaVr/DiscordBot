@@ -1,10 +1,6 @@
-
 import os
-import signal
 import asyncio
 from dotenv import load_dotenv
-import aioconsole
-import discord.errors
 from cogs.setup import bot, info
 from cogs.ping import Ping
 from cogs.welcome import Welcome
