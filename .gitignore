@@ -6,3 +6,4 @@ user.db
 *clear.txt
 blacklist_streaks.yml
 .DS_Store
+verification.db
