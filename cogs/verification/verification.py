@@ -63,7 +63,7 @@ class VerificationButton(discord.ui.View):
             nonce = new_noncediscordid(str(interaction.user.id))
 
             embed = discord.Embed(title="Verifizierung",
-                          description=f"https://lythia.de:8888/verifizierung?id={interaction.user.id}&p={nonce}",
+                          description=f"https://www.lythia.de/verifizierung?id={interaction.user.id}&p={nonce}",
                           colour=0xe44e27,
                           timestamp=datetime.now())
 
