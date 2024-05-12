@@ -1,0 +1,156 @@
+@font-face {
+    font-family: Overpass;
+    src: url("resources/Overpass.ttf");
+  }
+* {
+    font-family: 'Overpass', sans-serif;
+}
+
+body {
+    background-color: #031927;
+    color: #F0FFF1;
+   
+}
+
+#lythia-img {
+    width: 5rem;
+}
+
+
+#discord-icon {
+    color: #F0FFF1;
+}
+
+
+#welcome-text-phone {
+    margin-bottom: 50%;
+    margin-left: 35%;
+    text-align: left;
+}
+#welcome-container {
+    margin-top: 3%;
+}
+h1 {
+    font-weight: bold;
+    font-size: 290%;
+}
+
+.warning {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2.5rem;
+
+    padding: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 3%;}
+
+#warning-text {
+    margin-left: 3%;
+    position: relative;
+    top: 0.5em;
+    font-weight: bold;
+    font-size: larger;
+}
+
+#vorlage {
+    text-align: center;
+    margin: 3%;
+    color: #F0FFF1;
+}
+
+#vorlage-a {
+    color: #F0FFF1;
+    text-decoration: none;
+    font-weight: 500;
+}
+h1  {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: .15em;
+    display: inline-block;
+    padding: 15px;
+    position: relative;
+    text-align: center;
+  }
+
+h1:hover::after {
+    width: 100%;
+    right: 0;
+  }
+  
+
+h1::after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: -1;
+    content: "";
+    display: block;
+    height: 4px;
+    right: 0;
+    position: absolute;
+    background: linear-gradient(to left, red, orange 100%);
+    transition: width .5s ease 0s, right .5s ease 0s;
+    width: 0;
+  }
+
+#check {
+    padding-left: 2%;
+    padding-bottom: 1.7%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+textarea {
+    width: 80%;
+    height: 20rem;
+    background-color: #01090e;
+    border-radius: 0.5rem;
+    padding: 5px;
+    color: white;
+    
+}
+#abschicken {
+    margin-top: 0.5%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+p.vorlage-text {
+    margin-top: 10%;
+    margin: 1rem auto;
+    font-size: 18px;
+    width: 80%;    
+}
+.mainnavbar.scrolled {
+    background-color: aliceblue;
+    transition: background-color 1s ease-in-out;
+}
+
+#mainNavbar {
+    color: #F0FFF1;
+}
+
+#imp {
+    position: absolute;
+    bottom: 0;
+}
+
+@media (max-width: 782px) {
+    h1:hover {
+        display: none;
+    }
+    
+}
+
+@media (max-width: 1648px) {
+   #check {
+    display: none;
+   }
+}

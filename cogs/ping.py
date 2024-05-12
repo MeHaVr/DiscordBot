@@ -32,6 +32,7 @@ class Ping(commands.Cog):
         """bla bla bla"""
         info("Hello")
         await ctx.respond("pong2")
+        await bot.close()
 
 
     @slash_command(description="Es zeigt wie viele usere auf dem Server sind.")

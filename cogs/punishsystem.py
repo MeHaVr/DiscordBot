@@ -390,6 +390,8 @@ def setup(bot):
 
 
 class TestView(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None)
     @discord.ui.button(label="Klicke hier", style=discord.ButtonStyle.primary)
     async def button_callback(self, button, interaction):
         await interaction.response.send_message("Keks", ephemeral=True)
@@ -403,6 +405,9 @@ class TestView(discord.ui.View):
 #Button fur Entbannungs system 
 
 class EntbannungAntrag(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None)
+
     @discord.ui.button(label="Hilfe", style=discord.ButtonStyle.primary)
     async def button_callback(self, button, interaction):
 
@@ -416,6 +421,9 @@ class EntbannungAntrag(discord.ui.View):
         await interaction.response.send_message(embed=embed, view=Vorlage(), ephemeral=True)
 
 class Vorlage(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None)
+
     @discord.ui.button(label="Vorlage", style=discord.ButtonStyle.success)
     async def button_callback3(self, button, interaction):
 
@@ -431,6 +439,8 @@ class Vorlage(discord.ui.View):
     
 
 class EntbannungsCheck(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None)
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
@@ -464,6 +474,7 @@ class EntbannungsCheck(discord.ui.View):
 class EntbannungsCheckAblehnen(discord.ui.View):
 
     def __init__(self, *args, **kwargs):
+        super().__init__(timeout=None)
         self.user = kwargs.pop('user')
         super(EntbannungsCheckAblehnen, self).__init__(*args, **kwargs)
 

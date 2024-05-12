@@ -4,6 +4,7 @@ import yaml
 from icecream import ic
 import os
 from dotenv import load_dotenv
+import secrets
 
 load_dotenv()
 
@@ -83,5 +84,18 @@ try:
 except FileNotFoundError:
     info('no properties, creating new file')
     save_properties()
+
+#verfication 
+
+nonces = {}
+def new_noncediscordid(discord_id):
+    nonces[discord_id] = secrets.token_urlsafe(16)
+    return nonces[discord_id]
+
+def check_noncediscordid(discord_id, nonce):
+    return discord_id in nonces and nonces[discord_id] == nonce
+
+def remove_noncediscordid(discord_id):
+    del nonces[discord_id]
 
 

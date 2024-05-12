@@ -12,7 +12,7 @@ import os
 from dotenv import load_dotenv
 
 
-class Ankundigun(commands.Cog): 
+class Ankundigung(commands.Cog): 
 
     @commands.slash_command(description="ankundigung")
     @discord.default_permissions(administrator=True)

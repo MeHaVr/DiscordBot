@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;700&display=swap');
+
+body {
+    background-color: #031927;
+    color: white;
+    font-family: Overpass;
+    overflow-x: hidden;
+}
+
+#ellipse-1 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 900px;
+    left: 500px;
+    background-color: #9747ff;
+    border-radius: 500px/500px;
+    filter: blur(600px);
+    opacity: .5;
+}
+
+#ellipse-2 {
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    top: 115px;
+    left: -500px;
+    background-color: #4056f4;
+    border-radius: 500px/500px;
+    filter: blur(600px);
+    opacity: .5 ;
+}
+
+@media (max-width: 960px) {
+    #ellipse-1 {
+        position: absolute;
+        width: 400px;
+        height: 300px;
+        top: 900px;
+        left: 5px;
+        border-radius: 100px/100px;
+    }
+    
+    #ellipse-2 {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        top: 115px;
+        left: 20px;
+        border-radius: 100px/100px;
+    }
+    
+}
+
+#lythia-logo {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3rem;
+    width: 100%;
+    z-index: 1;
+    background-color: #03192799;
+    padding: 1rem;
+    text-shadow: 2px 2px 2px #9747ff;
+}
+
+.nav-narrow-display {
+    display: none;
+}
+
+@media (max-width: 960px) {
+    /* mobile */
+    .nav-wide-display {
+        display: none;
+    }
+    .nav-narrow-display {
+        display: block;
+    }
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+}
+nav ~ a,
+nav > img {
+    margin-right: 3rem;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+main {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-bottom: 5rem;
+    padding-top: 10rem;
+
+    position: relative;
+}
+
+@media (max-width: 960px) {
+    main {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+}
+
+main .columns {
+    display: flex;
+}
+
+main .col-left {
+    width: 50%;
+}
+main .col-right {
+    width: 50%;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+p {
+    font-size: 30px;
+}
+
+.warning {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    height: 4rem;
+    width: 100%;
+    margin-top: 3rem;
+    
+    background-color: #C62929;
+    border-radius: .5rem;
+    font-size: 24px;
+}
+
+
+.warning img {
+    height: 3rem;
+    margin: 0 1rem 0 1rem;
+}
+
+@media (max-width: 960px) {
+    .warning img {
+        display: none;
+    }
+
+    .warning {
+        display: block;
+        height: auto;
+    }
+    .warning p {
+        text-align: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+    }
+}
+
+p#vorlage {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+textarea {
+    width: 80%;
+    height: 20rem;
+    background-color: black;
+    color: white;
+    border: 1px solid gray; 
+    border-radius: 0.5rem;
+    padding: 5px;
+}
+
+form input, 
+button#button-vorlage,
+button#button-vorlage a {
+    margin: 0.5rem 0 0.5rem 0;
+    background-color: #4056f4;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    border: none;
+    border-radius: 0.5rem;
+    height: 3rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+form input {
+    width: calc(80% + 10px);
+}
+
+p.vorlage-text {
+    margin: 1rem auto;
+    font-size: 18px;
+    width: 80%;    
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 4px;
+
+  background-color: #031927;
+}

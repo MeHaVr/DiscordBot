@@ -5,6 +5,7 @@ from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+import hashlib 
 
 backend = default_backend()
 iterations = 100_000
@@ -33,3 +34,8 @@ def password_decrypt(token: bytes, password: str) -> bytes:
     iterations = int.from_bytes(iter, 'big')
     key = _derive_key(password.encode(), salt, iterations)
     return Fernet(key).decrypt(token)
+
+def hash_ip(string):
+    m = hashlib.sha3_512()
+    m.update(bytes(string, encoding="ASCII"))
+    return m.hexdigest()

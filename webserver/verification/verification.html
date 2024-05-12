@@ -4,17 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Entbannung Antrag</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="resources/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
-
-
-
+  <title>Verifiziert</title>
+  <link rel="stylesheet" href="resources/bootstrap.min.css">
+  <link rel="stylesheet" href="resources/style.css"> 
 </head>
 
 <body>
@@ -56,68 +48,17 @@
 
 
   <main>
-    <div class="row container-fluid">
-      <div class="row col-lg-6">
 
-      </div>
-      <div class="col-lg-6">
-
-      </div>
-
-      <section class="container-fluid px-0" id="welcome-container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-             <div class="container" id="welcome-text-phone">
-                <h1>Entbannung</h1>
-                <p>Hallo {{ user_name }}, hier können Sie sich entbannen lassen.</p>
-              </div>
-          </div>
-          <div class="col-lg-6" id="img-div">
-            <img class="col-right img-fluid" src="resources/skinrendernogmreen-1.png" id="welcome-img" />
-          </div>
-        </div>
-      </section>
-
-
-
+    <div class="position-absolute top-50 start-50 translate-middle" id="div1" ><p id="vorlage"><h1>Du wurdest Verifiziert<svg id="check" xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#64F58D" class="bi bi-check-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+        <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+      </svg></h1></i><br>
+         </p>
     </div>
-    <div class="warning">
-      <img src="resources/3643776-caution-exclamation-mark-round-sign-113410-1.svg" id="warning-img" />
-      <p id="warning-text">Sie können sich nur einmal entbannen lassen!</p>
-
-    </div>
-    <p id="vorlage">Brauchen Sie eine Vorlage, <button id="button-vorlage" class="btn btn-primary"><a id="vorlage-a"
-          href="#vorlage">klicken Sie hier </a></button></p>
-    <form action="/" method="post">
-      <textarea name="grund"></textarea>
-      <input type="submit" value="Abschicken" class="btn btn-success" id="abschicken" />
-      <input type="hidden" name="user_id" value="{{ user_id }}">
-    </form>
-
-    <a name="vorlage"></a>
-    <p class="vorlage-text">
-      Entbannungsantrag für [Dein Minecraft-Nickname]
-    </p>
-
-    <p class="vorlage-text">
-      Sehr geehrtes Serverteam von Lythia.de,<br><br>
-      ich wurde am [Datum] wegen [Grund des Bans] gebannt. Nach reiflicher Überlegung erkenne ich mein Fehlverhalten an
-      und möchte mich aufrichtig entschuldigen.
-      Grund für meinen Ban: [Hier den Grund angeben]<br><br>
-      Meine Einsicht und Entschuldigung: [Deine Einsicht und Entschuldigung]<br>
-      Maßnahmen, um ähnliche Vorfälle zu vermeiden: [Deine geplanten Maßnahmen]<br>
-      Ich hoffe aufrichtig, dass ihr meinen Entbannungsantrag in Betracht zieht und mir eine zweite Chance gebt. Ich
-      versichere, dass sich solche Vorfälle nicht wiederholen werden.
-      Vielen Dank für eure Zeit und Überlegung.
-    </p>
-    <p class="vorlage-text">
-      Mit freundlichen Grüßen,
-      [Dein Minecraft-Nickname]
-    </p>
+    
   </main>
   <footer>
-    <span class="text-wrapper-6">© 2023 Lythia.de. All rights reserved. </span>
-    <a href="https://lythia.de/impressum.html" target="_blank" rel="noopener noreferrer">
+    <a href="https://lythia.de/impressum.html" target="_blank" rel="noopener noreferrer" id="imp">
       <span class="text-wrapper-7">Impressum</span>
     </a>
   </footer>

@@ -89,12 +89,19 @@ class Info(commands.Cog):
         await channel.send(embed=embed, view=Rollen())
         await channel.send("<:E_:1154491760274313367>")
         await ctx.respond("Die Rollen wurde gesendet")
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        bot.add_view(Rollen())
     
 
 
 class Rollen(discord.ui.View):
+
+    def __init__(self):
+        super().__init__(timeout=None)
     
-    @discord.ui.button(style=discord.ButtonStyle.primary, label="Bedrock | Informationen")
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Bedrock | Informationen", custom_id="rollen1")
     async def button_callback(self, button, interaction):
 
         found = False
@@ -126,7 +133,7 @@ class Rollen(discord.ui.View):
             embed.set_footer(text="Lythia.de")
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
-    @discord.ui.button(style=discord.ButtonStyle.primary, label="Server | Informationen")
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Server | Informationen", custom_id="rollen2")
     async def button_callback_2(self, button, interaction):
 
         found = False
@@ -159,7 +166,7 @@ class Rollen(discord.ui.View):
             await interaction.user.add_roles(bed_role)
             
 
-    @discord.ui.button(style=discord.ButtonStyle.primary, label="Event | Informationen")
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Event | Informationen", custom_id="rollen3")
     async def button_callback_3(self, button, interaction):
 
         found = False
@@ -193,7 +200,7 @@ class Rollen(discord.ui.View):
             
             await interaction.response.send_message(embed=embed, ephemeral=True)
 
-    @discord.ui.button(style=discord.ButtonStyle.primary, label="Java | Informationen")
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Java | Informationen", custom_id="rollen4")
     async def button_callback_4(self, button, interaction):
 
         found = False

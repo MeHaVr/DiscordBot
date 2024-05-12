@@ -1,9 +1,19 @@
 import asyncio
 import tornado
 from jinja2 import Template
-from cogs.setup import properties, save_properties
+from cogs.setup import properties, save_properties, check_noncediscordid, remove_noncediscordid, info
 from icecream import ic 
 from cogs.punishsystem import entbannen
+import sqlite3
+from crypto import hash_ip
+import os
+import discord
+
+conn = sqlite3.connect('verification.db')
+cur = conn.cursor()
+cur.execute("""CREATE TABLE IF NOT EXISTS users 
+           (id INTEGER PRIMARY KEY AUTOINCREMENT, discord_id TEXT, remote_ip TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
+conn.commit()
 
 class FileHandler(tornado.web.RequestHandler):
     def get(self, path, ext):
@@ -55,16 +65,64 @@ class MainHandler(tornado.web.RequestHandler):
         user_id = self.get_body_argument("user_id")
         await entbannen(user_id, grund)
 
+class VerificationHandler(tornado.web.RequestHandler): 
+    async def get(self):
 
+        print(os.getcwd())
+        user_id = self.get_query_argument('id')
+        hashed_ip = hash_ip(self.request.remote_ip)
+        nonce = self.get_query_argument('p')
+
+        #member = await discord_bot["bot"].fetch_user(user_id)
+        guild = await discord_bot["bot"].fetch_guild(properties["server-guild-id"])
+        member = await guild.fetch_member(user_id)
+        role = discord.utils.get(guild.roles, name="Epic")
+            
+                
+        if nonce and user_id and check_noncediscordid(user_id, nonce):
+            remove_noncediscordid(user_id)
+            ic(hashed_ip)
+            
+            cur.execute(f"SELECT * FROM users WHERE remote_ip = '{hashed_ip}';")
+            usercheck = cur.fetchone()
+
+            if usercheck is None:
+                cur.execute("INSERT INTO users (discord_id, remote_ip) VALUES (?, ?)", (user_id, hashed_ip))
+                conn.commit()                
+                with open('webserver/verification/verification.html','r',encoding="utf-8") as file:
+                    self.write(file.read())
+                await member.add_roles(role)
+            else:
+                with open('webserver/verification/verification_deny.html','r',encoding="utf-8") as file:
+                    self.write(file.read())           
+        else:
+            with open('webserver/verification/verification_deny.html','r',encoding="utf-8") as file:
+                self.write(file.read())
+    
 def make_app():
     return tornado.web.Application([
-        (r"/resources/(.*)", tornado.web.StaticFileHandler, {"path": "./DiscordBot/webserver/resources"}),
+        (r"/resources/(.*)", tornado.web.StaticFileHandler, {"path": "./webserver/verification/resources"}),
+        ("/verifizierung", VerificationHandler),
         (r"/", MainHandler),
     ])
 
-async def webserver_main():
+
+shutdown_event = asyncio.Event()
+discord_bot = {}
+
+def webserver_shutdown():
+    shutdown_event.set()
+
+
+async def webserver_start(bot):
+    info("webserver starting")
     app = make_app()
     app.listen(8888)
-    await asyncio.Event().wait()
+    discord_bot['bot'] = bot
+    info("webserver has started")
+    await shutdown_event.wait()
+    cur.close()
+    conn.close()
+    info("webserver has stopped")
 
 

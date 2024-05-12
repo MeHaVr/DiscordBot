@@ -41,7 +41,7 @@ class Ticket_Command(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f'Bot Loaded | ticket_commands.py ✅')
+        info(f'Bot Loaded | ticket_commands.py ✅')
 
     @commands.Cog.listener()
     async def on_bot_shutdown():

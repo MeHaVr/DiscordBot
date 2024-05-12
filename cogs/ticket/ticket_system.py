@@ -41,14 +41,17 @@ class Ticket_System(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f'Bot Loaded | ticket_system.py ✅')
+        info(f'Bot Loaded | ticket_system.py ✅')
         self.bot.add_view(MyView(bot=self.bot))
         self.bot.add_view(CloseButton(bot=self.bot))
         self.bot.add_view(TicketOptions(bot=self.bot))
 
-    #Closes the Connection to the Database when shutting down the Bot
+    # Closes the Connection to the Database when shutting down the Bot
     @commands.Cog.listener()
-    async def on_bot_shutdown():
+    async def on_disconnect(self):
+        self.shutdown()
+
+    def shutdown(self):
         cur.close()
         conn.close()
 
