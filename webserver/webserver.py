@@ -68,9 +68,9 @@ class MainHandler(tornado.web.RequestHandler):
 class VerificationHandler(tornado.web.RequestHandler): 
     async def get(self):
 
-        print(os.getcwd())
         user_id = self.get_query_argument('id')
-        hashed_ip = hash_ip(self.request.remote_ip)
+        remote_ip = self.request.headers.get('X-Real-Ip', '')
+        hashed_ip = hash_ip(remote_ip)
         nonce = self.get_query_argument('p')
 
         #member = await discord_bot["bot"].fetch_user(user_id)
