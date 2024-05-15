@@ -117,7 +117,7 @@ class MyView(discord.ui.View):
                             embed = discord.Embed(title="Ticket", description=f'**Willkommen {interaction.user.mention}**, <@&1147845185405984890> \n'
                                                                'schildern Sie Ihr Problem und unser Support wird Ihnen bald helfen.',   #Ticket Welcome message
                                                             color=discord.colour.Color.blue())
-                            embed.set_footer(text="Lythia | Ticket System Feature", icon_url="https://media.discordapp.net/attachments/1215339742246211588/1229489455304413274/server-icon2.png?ex=662fde48&is=661d6948&hm=f2169ad02e48599db0e60ba33e51cb15119b0e5b065862dc1a55dbad9e8b043c&=&format=webp&quality=lossless")
+                            embed.set_footer(text="Lythia | Ticket System Feature")
                             await ticket_channel.send(embed=embed, view=CloseButton(bot=self.bot))
 
                             embed = discord.Embed(description=f'📬 Ticket wurde erstellt! Das Ticket findest du in {ticket_channel.mention}',  
@@ -130,15 +130,14 @@ class MyView(discord.ui.View):
                             await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
                 else:
                     embed = discord.Embed(title=f"Fehler", description='''Sie haben Bereits ein Ticket geöffnet!''', color=0xff0000)
-                    embed.set_footer(text="Lythia | Ticket System Feature", icon_url="https://media.discordapp.net/attachments/1215339742246211588/1229489455304413274/server-icon2.png?ex=662fde48&is=661d6948&hm=f2169ad02e48599db0e60ba33e51cb15119b0e5b065862dc1a55dbad9e8b043c&=&format=webp&quality=lossless")
+                    embed.set_footer(text="Lythia | Ticket System Feature")
                     await interaction.response.send_message(embed=embed, ephemeral=True) #This will tell the User that he already has a Ticket open
                     await asyncio.sleep(1)
                     embed = discord.Embed(title="Tickets System", description='''
         Hast du eine Frage oder brauchst du Hilfe auf **Lythia.de**? **Erstelle einfach ein Ticket, indem du auf den drop down Button klickst.**
 Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.
-Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())
-                    embed.set_thumbnail(url="https://media.discordapp.net/attachments/1215339742246211588/1229489333996748872/ticket.png?            ex=662fde2c&is=661d692c&hm=ca97f4b7981f5faf228fced968be5f2eeac40a2d563093ba588b82b79a47582a&=&format=webp&quality=lossless&width=1193&height=671")  # Hier kannst du deine Logourl einfügen
-                    embed.set_footer(text="Lythia | Ticket System Feature", icon_url="https://media.discordapp.net/attachments/1215339742246211588/1229489455304413274/server-icon2.png?ex=662fde48&is=661d6948&hm=f2169ad02e48599db0e60ba33e51cb15119b0e5b065862dc1a55dbad9e8b043c&=&format=webp&quality=lossless")
+Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())   
+                    embed.set_footer(text="Lythia | Ticket System Feature")
         if "support2" in interaction.data['values']:
 
             if interaction.channel.id == TICKET_CHANNEL:
@@ -205,7 +204,7 @@ class CloseButton(discord.ui.View):
         self.bot = bot
         super().__init__(timeout=None)
 
-    @discord.ui.button(label="**Ticket schließen 🎫**", style = discord.ButtonStyle.blurple, custom_id="close")
+    @discord.ui.button(label="Ticket schließen 🎫", style = discord.ButtonStyle.blurple, custom_id="close")
     async def close(self, button: discord.ui.Button, interaction: discord.Interaction):
         guild = self.bot.get_guild(GUILD_ID)
         ticket_creator = int(interaction.channel.topic)
@@ -230,7 +229,7 @@ class TicketOptions(discord.ui.View):
         self.bot = bot
         super().__init__(timeout=None)
 
-    @discord.ui.button(label="**Ticket wieder öffnen 🎫**", style = discord.ButtonStyle.green, custom_id="reopen")
+    @discord.ui.button(label="Ticket wieder öffnen 🎫", style = discord.ButtonStyle.green, custom_id="reopen")
     async def reopen_button(self, button: discord.ui.Button, interaction: discord.Interaction):
         guild = self.bot.get_guild(GUILD_ID)
         ticket_creator = int(interaction.channel.topic)
@@ -245,7 +244,7 @@ class TicketOptions(discord.ui.View):
         await interaction.channel.edit(name=f"Ticket-{ticket_number}") #Edit the Ticket Channel Name again
         await interaction.response.send_message(embed=embed)
 
-    @discord.ui.button(label="**Lösche Ticket 🎫**", style = discord.ButtonStyle.red, custom_id="delete")
+    @discord.ui.button(label="Lösche Ticket 🎫", style = discord.ButtonStyle.red, custom_id="delete")
     async def delete_button(self, button: discord.ui.Button, interaction: discord.Interaction):
 
         guild = self.bot.get_guild(GUILD_ID)

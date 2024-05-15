@@ -58,13 +58,11 @@ class Ticket_Command(commands.Cog):
         save_properties()
         
         embed = discord.Embed(title="Tickets System", description='''
-        \n Hast du eine Frage oder brauchst du Hilfe auf **Lythia.de**?\n
-        
-        **Erstelle einfach ein Ticket, indem du auf den Drop down Button klickst.**\n
-Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.\n
+        \n Hast du eine Frage oder brauchst du Hilfe auf **Lythia.de**?    
+        **Erstelle einfach ein Ticket, indem du auf den Drop down Button klickst.**
+Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.
 Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())
-        embed.set_image(url="https://media.discordapp.net/attachments/1215339742246211588/1229489333996748872/ticket.png?ex=662fde2c&is=661d692c&hm=ca97f4b7981f5faf228fced968be5f2eeac40a2d563093ba588b82b79a47582a&=&format=webp&quality=lossless&width=1193&height=671")  # Hier kannst du deine Logourl einfügen
-        embed.set_footer(text="Lythia | Ticket System Feature", icon_url="https://media.discordapp.net/attachments/1215339742246211588/1229489455304413274/server-icon2.png?ex=662fde48&is=661d6948&hm=f2169ad02e48599db0e60ba33e51cb15119b0e5b065862dc1a55dbad9e8b043c&=&format=webp&quality=lossless")
+        embed.set_footer(text="Lythia | Ticket System Feature")
         await channel.send(embed=embed, view=MyView(self.bot))
         await ctx.respond("Dein Ticket wurde gesendet!", ephemeral=True)
 
