@@ -9,6 +9,8 @@ import time
 from datetime import timedelta
 from datetime import datetime
 from icecream import ic
+import os
+from dotenv import load_dotenv
 
 class Verification(commands.Cog): 
 
@@ -32,6 +34,36 @@ class Verification(commands.Cog):
     async def on_ready(self):
         bot.add_view(VerificationButton())
 
+    
+    @commands.Cog.listener()
+    async def on_member_join(self, member):
+
+        guild = properties['server-guild-id']
+
+        if member.bot:
+            return
+        
+        userDm = await member.create_dm()
+
+        if os.getenv("TEST_MODE") == "True":
+            channel = await guild.get_channel(1180536176139059327)
+        else:
+            channel = await guild.get_channel(1239266846809788428)
+
+        embed = discord.Embed(title="Verifizierung",
+                      description="Bitte verifiziere dich in Discord um dem Discord Server beizutreten. Klicke den Knopf und folge dem Link. Wenn du Hilfe brauchst bitte schreibe einen Supporter oder einen Mod an.",
+                      colour=0x00f412,
+                      timestamp=datetime.now())
+
+        embed.set_footer(text=f"Verifizierung | {member.guild.name}")
+
+        button = discord.ui.Button(label="Chat", emoji="🗨️",  url=f"{channel.jump_url}")
+        view = discord.ui.View()
+        view.add_item(button)
+
+
+        await userDm.send(embed=embed)
+        
 
 
 
