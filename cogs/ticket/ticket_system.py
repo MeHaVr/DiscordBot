@@ -78,7 +78,7 @@ class MyView(discord.ui.View):
             )
         ]
     )
-    async def callback(self, select, interaction):\
+    async def callback(self, select, interaction):
         
         if "support1" in interaction.data['values']: 
 
@@ -170,20 +170,19 @@ Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft we
                             embed = discord.Embed(title="Ticket", description=f'**Willkommen {interaction.user.mention}**, <@&1147845185405984890> \n ' #Ticket Welcome 
                             'Ein **Teammitglied** wird sich in Kürze bei dir Melden!',
                                                             color=discord.colour.Color.blue())
-                            embed.set_footer(text="Lythia | Ticket System Feature", icon_url="https://media.discordapp.net/attachments/1215339742246211588/1229489455304413274/server-icon2.png?ex=662fde48&is=661d6948&hm=f2169ad02e48599db0e60ba33e51cb15119b0e5b065862dc1a55dbad9e8b043c&=&format=webp&quality=lossless")
+                            embed.set_footer(text="Lythia | Ticket System Feature",)
                             await ticket_channel.send(embed=embed, view=CloseButton(bot=self.bot))
 
                             embed = discord.Embed(title="Ticket", description=f'📬 Ticket wurde erstellt! Siehe hier --> {ticket_channel.mention}',
                                                     color=discord.colour.Color.green())
-                            embed.set_footer(text="Lythia | Ticket System Feature", icon_url="https://media.discordapp.net/attachments/1215339742246211588/1229489455304413274/server-icon2.png?ex=662fde48&is=661d6948&hm=f2169ad02e48599db0e60ba33e51cb15119b0e5b065862dc1a55dbad9e8b043c&=&format=webp&quality=lossless")
+                            embed.set_footer(text="Lythia | Ticket System Feature")
                             await interaction.response.send_message(embed=embed, ephemeral=True)
                             await asyncio.sleep(1)
                             embed = discord.Embed(title="Tickets System :logo:", description='''
         Hast du eine Frage oder brauchst du Hilfe auf **Lythia.de**? **Erstelle einfach ein Ticket, indem du auf den drop down Button klickst.**
 Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.
 Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())
-                            embed.set_thumbnail(url="https://media.discordapp.net/attachments/1215339742246211588/1229489333996748872/ticket.png?            ex=662fde2c&is=661d692c&hm=ca97f4b7981f5faf228fced968be5f2eeac40a2d563093ba588b82b79a47582a&=&format=webp&quality=lossless&width=1193&height=671")  # Hier kannst du deine Logourl einfügen
-                            embed.set_footer(text="Lythia | Ticket System Feature", icon_url="https://media.discordapp.net/attachments/1215339742246211588/1229489455304413274/server-icon2.png?ex=662fde48&is=661d6948&hm=f2169ad02e48599db0e60ba33e51cb15119b0e5b065862dc1a55dbad9e8b043c&=&format=webp&quality=lossless")
+                            embed.set_footer(text="Lythia | Ticket System Feature")
                             await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
                 else:
                     embed = discord.Embed(title=f"Sie haben bereits ein Ticket geöffnet", color=0xff0000)
@@ -193,7 +192,6 @@ Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft we
         Hast du eine Frage oder brauchst du Hilfe auf **Lythia.de**? **Erstelle einfach ein Ticket, indem du auf den drop down Button klickst.**
 Sobald ein Teamler Zeit hat, wird er sich mit dir in Verbindung setzen.
 Unnötige Tickets werden nicht gefördert, und kann mit einer sperre bestraft werden!''', color=discord.colour.Color.blue())
-                    embed.set_thumbnail(url="https://media.discordapp.net/attachments/1215339742246211588/1229489333996748872/ticket.png?            ex=662fde2c&is=661d692c&hm=ca97f4b7981f5faf228fced968be5f2eeac40a2d563093ba588b82b79a47582a&=&format=webp&quality=lossless&width=1193&height=671")  # Hier kannst du deine Logourl einfügen
                     embed.set_footer(text="Lythia | Ticket System Feature", icon_url="https://media.discordapp.net/attachments/1215339742246211588/1229489455304413274/server-icon2.png?ex=662fde48&is=661d6948&hm=f2169ad02e48599db0e60ba33e51cb15119b0e5b065862dc1a55dbad9e8b043c&=&format=webp&quality=lossless")
                     await interaction.message.edit(embed=embed, view=MyView(bot=self.bot)) #This will reset the SelectMenu in the Ticket Channel
         return
