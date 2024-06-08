@@ -13,7 +13,7 @@ from cogs.mods.blacklist import BlackList
 from webserver.webserver import webserver_shutdown, webserver_start
 from cogs.ankundigung import Ankundigung
 from cogs.supportchannel import SupportChannel
-from cogs.youtubealards import YoutubeAlards
+from cogs.youtubealerts import YoutubeAlerts
 
 
 from cogs.verification.verification import Verification
@@ -25,7 +25,7 @@ load_dotenv()
 
 
 bot.add_cog(Ping())
-bot.add_cog(YoutubeAlards())
+bot.add_cog(YoutubeAlerts())
 bot.add_cog(Welcome())
 bot.add_cog(SupportChannel())
 bot.add_cog(Verification())

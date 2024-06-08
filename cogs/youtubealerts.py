@@ -7,10 +7,10 @@ from datetime import timedelta
 from datetime import datetime
 import scrapetube
 
-class YoutubeAlards(commands.Cog): 
+class YoutubeAlerts(commands.Cog): 
 
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self):
+
         self.channels = {
             "Lythiade": "https://www.youtube.com/channel/UCzenDgqI2BQz27ESdNzWzqQ"
         }
