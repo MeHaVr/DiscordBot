@@ -46,10 +46,10 @@ class Ticket_System(commands.Cog):
         self.bot.add_view(CloseButton(bot=self.bot))
         self.bot.add_view(TicketOptions(bot=self.bot))
 
-    # Closes the Connection to the Database when shutting down the Bot
-    # @commands.Cog.listener()
-    # async def on_disconnect(self):
-    #     self.shutdown()
+    ## Closes the Connection to the Database when shutting down the Bot
+    ## @commands.Cog.listener()
+    ## async def on_disconnect(self):
+    ##     self.shutdown()
 
     def shutdown(self):
         cur.close()
