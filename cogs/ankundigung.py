@@ -34,9 +34,9 @@ class Ankundigung(commands.Cog):
         serverrole = guild.get_role(properties['ServerInformationenId'])
 
         if everyone == True:
-            announcement = f"# {title}\n> @everyone - {serverrole.mention}\n\n{text}\n\nMit freundlichen Grüßen,\n{highest_role} - {ctx.author.mention}"
+            announcement = f"# {title}\n> @everyone - {serverrole.mention}\n\n{text.replace('\\n', '\n')}\n\nMit freundlichen Grüßen,\n{highest_role} - {ctx.author.mention}"
         else: 
-            announcement = f"# {title}\n> {serverrole.mention}\n\n{text}\n\nMit freundlichen Grüßen,\n{highest_role} - {ctx.author.mention}"
+            announcement = f"# {title}\n> {serverrole.mention}\n\n{text.replace('\\n', '\n')}\n\nMit freundlichen Grüßen,\n{highest_role} - {ctx.author.mention}"
 
         if image_url:
             announcement += f"\n{image_url}"

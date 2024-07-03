@@ -26,11 +26,14 @@ class SupportChannel(commands.Cog):
 
         if after.channel.id == channel_id:
 
+            if member.role.name == "» Support":
+                return
+
             create_to_userDm = await member.create_dm()
             
             if member.id in cooldown and time.time() - cooldown[member.id] < 2*60:
 
-                
+            
                 embed2 = discord.Embed(title="Support",
                       description="Du hast einen **Cooldown** von 2 Minuten.",
                       colour=0xf40000,
@@ -40,6 +43,7 @@ class SupportChannel(commands.Cog):
                                  icon_url=f"{member.guild.icon}")
                 embed2.set_footer(text=f"{member.guild.name}",
                                  icon_url=f"{member.guild.icon}")
+               
                 
                 await create_to_userDm.send(embed=embed2)
                 return
