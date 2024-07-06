@@ -49,6 +49,7 @@ if os.getenv("TEST_MODE") == "True":
         'guildmember': 1180536176139059322,
         'mod_blacklist_channels': [1180536179247038579],
         'support_channel': 1180536176139059323,
+        'support_role': 1180536174880768025,
         'ServerInformationenId': 1180536174654267414
     }
 else:

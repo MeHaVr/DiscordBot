@@ -26,7 +26,9 @@ class SupportChannel(commands.Cog):
 
         if after.channel.id == channel_id:
 
-            if member.role.name == "» Support":
+            hasrole = member.get_role(role_id)
+
+            if hasrole:
                 return
 
             create_to_userDm = await member.create_dm()
