@@ -7,3 +7,4 @@ user.db
 blacklist_streaks.yml
 .DS_Store
 verification.db
+mod_whitelist.yml

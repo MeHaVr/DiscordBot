@@ -11,7 +11,7 @@ from cogs.ticket.ticket_system import Ticket_System
 from cogs.mods.mod import Mod
 from cogs.mods.blacklist import BlackList
 from webserver.webserver import webserver_shutdown, webserver_start
-from cogs.ankundigung import Ankundigung
+#from cogs.ankundigung import Ankundigung
 from cogs.supportchannel import SupportChannel
 
 
@@ -33,7 +33,7 @@ bot.add_cog(Info())
 bot.add_cog(Ticket_Command(bot))
 bot.add_cog(Ticket_System(bot))
 bot.add_cog(Mod())
-bot.add_cog(Ankundigung())
+#bot.add_cog(Ankundigung())
 
 @bot.event
 async def on_ready():

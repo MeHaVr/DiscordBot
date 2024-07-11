@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.commands import slash_command
-from cogs.setup import bot,server_guild, info, properties, save_properties
+from cogs.setup import bot,server_guild, info, properties, save_properties, save_mod_whitelist, mod_whitelist, find_word
 from discord.commands import Option
 from datetime import timedelta
 from datetime import datetime
@@ -30,6 +30,18 @@ class Mod(commands.Cog):
         await ctx.respond(f"Es wurde erfolgreich auf {logechat.mention} gestellt")
 
         print(ctx.author.id)
+    
+    @mod.command()
+    @discord.default_permissions(administrator=True)
+    async def whitelist(self, ctx: discord.ApplicationContext, 
+                    word: Option(str, "Welche Nachricht soll in die Whitelist kommen.")):
+        mod_whitelist.append(word)
+        save_mod_whitelist()
+
+        await ctx.respond(f"Es wurde erfolgreich auf {word} gestellt")
+
+        print(ctx.author.id)
+        
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -42,6 +54,10 @@ class Mod(commands.Cog):
 
         log_channel = await bot.fetch_channel(properties['punishsystem-logchat'])
         black_list = properties['mod_blacklist_channels']
+
+        for word in mod_whitelist:
+            if find_word(message.content, word):
+                return
 
 
         for channel_id in black_list:

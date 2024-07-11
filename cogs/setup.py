@@ -5,6 +5,7 @@ from icecream import ic
 import os
 from dotenv import load_dotenv
 import secrets
+import re
 
 load_dotenv()
 
@@ -100,3 +101,26 @@ def remove_noncediscordid(discord_id):
     del nonces[discord_id]
 
 
+#mod whitelist
+
+mod_whitelist = []
+
+def save_mod_whitelist():
+    with open('mod_whitelist.yml', 'w') as file:
+        yaml.dump(mod_whitelist, file)
+try:
+    with open('mod_whitelist.yml', 'r') as file:
+        mod_whitelist = yaml.safe_load(file)
+except FileNotFoundError:
+    info('no mod_whitelist.yml, creating new file')
+    save_mod_whitelist()
+
+#word match
+
+def find_word(text, search):
+
+   result = re.findall('\\b'+search+'\\b', text, flags=re.IGNORECASE)
+   if len(result)>0:
+      return True
+   else:
+      return False
