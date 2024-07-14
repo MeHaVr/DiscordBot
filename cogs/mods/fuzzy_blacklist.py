@@ -6,7 +6,7 @@ import secrets
 from crypto import password_decrypt
 
 class FuzzyBlacklist:
-  def __init__(self, bl_name, wl_name, max_score=90):
+  def __init__(self, bl_name, wl_name, max_score=95):
     self.max_score = max_score
     self.black_words = []
     self.white_words = []
